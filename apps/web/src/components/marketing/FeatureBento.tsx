@@ -65,13 +65,13 @@ export function FeatureBento() {
                     ))}
                   </div>
                   <div className="relative h-28 rounded-xl border border-dashed border-white/10 bg-[linear-gradient(transparent_23px,rgba(255,255,255,0.03)_24px),linear-gradient(90deg,transparent_23px,rgba(255,255,255,0.03)_24px)] bg-[size:24px_24px]">
-                    <span className="absolute left-4 top-6 rounded-full border border-line bg-panel px-2.5 py-1 text-[10px] text-mute">
+                    <span className="absolute left-4 top-6 rounded-md border border-white/[0.1] bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium text-mute">
                       Development
                     </span>
-                    <span className="absolute left-1/2 top-10 -translate-x-1/2 rounded-full border border-accent/40 bg-accent/15 px-3 py-1 text-[10px] text-accent-soft shadow-[0_0_24px_rgba(59,158,255,0.45)]">
-                      Launch!
+                    <span className="absolute left-1/2 top-10 -translate-x-1/2 rounded-md border border-accent/25 bg-accent/[0.12] px-2 py-0.5 text-[10px] font-medium text-accent-soft">
+                      Launch
                     </span>
-                    <span className="absolute bottom-5 right-6 rounded-full border border-line bg-panel/80 px-2.5 py-1 text-[10px] text-mute/70">
+                    <span className="absolute bottom-5 right-6 rounded-md border border-white/[0.1] bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium text-mute/80">
                       Maintenance
                     </span>
                   </div>
@@ -91,7 +91,7 @@ export function FeatureBento() {
                 aria-hidden="true"
               />
               <div className="relative">
-                <Badge variant="accent" className="mb-4">
+                <Badge variant="accent" showDot className="mb-4">
                   <Zap aria-hidden="true" className="size-3" />
                   AI optimizes suite structure…
                 </Badge>
@@ -168,7 +168,7 @@ export function FeatureBento() {
                 </p>
               </div>
               <div className="relative mt-6 flex flex-wrap gap-2 sm:mt-0 sm:justify-end">
-                {["success", "accuracy", "efficiency", "safety", "overall"].map((dim) => (
+                {["Success", "Accuracy", "Efficiency", "Safety", "Overall"].map((dim) => (
                   <Badge key={dim} variant="accent">
                     <ChartColumnIncreasing aria-hidden="true" className="size-3" />
                     {dim}

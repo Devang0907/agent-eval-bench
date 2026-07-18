@@ -184,14 +184,18 @@ function OverviewPanel() {
       <div className="product-glass-card flex min-h-0 flex-col rounded-2xl p-4 sm:p-5">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-medium text-snow">Latest runs</p>
-          <Badge variant="accent">Live sync</Badge>
+          <Badge variant="accent" showDot>
+            Live sync
+          </Badge>
         </div>
         <ul className="divide-y divide-white/[0.06] overflow-auto">
           {runs.slice(0, 4).map((run) => (
             <li key={run.id} className="flex items-center justify-between gap-3 py-3 text-sm">
               <span className="min-w-0 truncate font-medium text-snow">{run.agent}</span>
               <span className="hidden font-mono text-xs text-mute sm:inline">{run.id}</span>
-              <Badge variant={run.status === "running" ? "warn" : "good"}>{run.status}</Badge>
+              <Badge variant={run.status === "running" ? "warn" : "good"} showDot>
+                {run.status === "running" ? "Running" : "Passed"}
+              </Badge>
               <span className="font-mono tabular text-fog">{run.score.toFixed(1)}</span>
             </li>
           ))}
@@ -210,8 +214,10 @@ function RunsPanel() {
           <p className="mt-0.5 text-xs text-mute">Synced from CLI · last 7 days</p>
         </div>
         <div className="flex gap-2">
-          <Badge variant="accent">5 agents</Badge>
-          <Badge>Filter: all</Badge>
+          <Badge variant="accent" showDot>
+            5 agents
+          </Badge>
+          <Badge>All filters</Badge>
         </div>
       </div>
       <div className="overflow-auto">
@@ -230,7 +236,9 @@ function RunsPanel() {
                 <td className="py-3 font-medium text-snow">{run.agent}</td>
                 <td className="hidden py-3 font-mono text-xs text-mute sm:table-cell">{run.id}</td>
                 <td className="py-3">
-                  <Badge variant={run.status === "running" ? "warn" : "good"}>{run.status}</Badge>
+                  <Badge variant={run.status === "running" ? "warn" : "good"} showDot>
+                    {run.status === "running" ? "Running" : "Passed"}
+                  </Badge>
                 </td>
                 <td className="py-3 text-right font-mono tabular text-snow">{run.score.toFixed(1)}</td>
               </tr>
@@ -250,7 +258,9 @@ function LeaderboardPanel() {
           <p className="text-sm font-medium text-snow">Leaderboard</p>
           <p className="mt-0.5 text-xs text-mute">Weighted score · context suite</p>
         </div>
-        <Badge variant="accent">Live</Badge>
+        <Badge variant="accent" showDot>
+          Live
+        </Badge>
       </div>
       <ul className="divide-y divide-white/[0.06] overflow-auto">
         {leaderboard.map((row) => (
@@ -288,7 +298,7 @@ function SettingsPanel() {
           </div>
           <div className="flex justify-between border-b border-white/[0.06] pb-3">
             <span className="text-mute">Plan</span>
-            <span className="text-snow">Early access</span>
+            <span className="text-snow">Free</span>
           </div>
           <div className="flex justify-between">
             <span className="text-mute">Region</span>
@@ -325,7 +335,9 @@ function CliPanel() {
           <Terminal className="size-4 text-accent-soft" />
           <p className="text-sm font-medium text-snow">Link CLI</p>
         </div>
-        <Badge variant="good">Connected</Badge>
+        <Badge variant="good" showDot>
+          Connected
+        </Badge>
       </div>
       <div className="min-h-0 flex-1 overflow-auto rounded-xl border border-white/[0.08] bg-[#07090d] p-4 font-mono text-[12px] leading-6 sm:text-[13px]">
         {cliLines.map((line, i) => (
@@ -425,7 +437,7 @@ export function ProductPreview() {
         </div>
 
         {/* Floating command panel */}
-        <div className="absolute inset-x-4 bottom-4 z-10 sm:inset-x-8 sm:bottom-5">
+        <div className="absolute inset-x-4 bottom-[31px] z-10 sm:inset-x-8 sm:bottom-[35px]">
           <div
             className={cn(
               "overflow-hidden rounded-2xl border border-cyan-300/35 bg-[#0a0e14]/75 shadow-[0_0_0_1px_rgba(120,210,255,0.12),0_20px_60px_-20px_rgba(0,0,0,0.8),0_0_40px_-12px_rgba(80,180,255,0.35)] backdrop-blur-xl transition-[height] duration-300",
@@ -447,7 +459,7 @@ export function ProductPreview() {
                           : tab === "Runs"
                             ? "5 runs synced · 1 in progress"
                             : tab === "Settings"
-                              ? "API token active · early access"
+                              ? "API token active · Free plan"
                               : "Dashboard live · 24 runs synced"}
                     </p>
                     <p className="mt-1 text-[11px] leading-relaxed text-mute">

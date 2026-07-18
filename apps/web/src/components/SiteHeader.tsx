@@ -82,8 +82,8 @@ export function SiteHeader() {
         <nav
           aria-label="Primary"
           className={cn(
-            "absolute left-1/2 hidden -translate-x-1/2 items-center text-sm text-mute lg:flex",
-            scrolled ? "gap-4" : "gap-6",
+            "absolute left-1/2 hidden -translate-x-1/2 items-center text-[13px] text-mute lg:flex",
+            scrolled ? "gap-5" : "gap-8",
           )}
         >
           {links.map((link) => (

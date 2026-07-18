@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Play } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import { Badge } from "@/components/ui/badge";
 import { HeroBackdrop, HeroCurve } from "@/components/marketing/HeroBackdrop";
 import { ProductPreview } from "@/components/marketing/ProductPreview";
 import { MotionButton } from "@/components/motion/MotionButton";
@@ -14,7 +13,7 @@ export function Hero() {
   const m = motionSafe(reduced);
 
   return (
-    <section className="relative isolate min-h-[100svh] overflow-hidden pb-12 -mt-14 pt-[4.5rem] sm:pt-20">
+    <section className="relative isolate min-h-[100svh] overflow-hidden pb-16 -mt-14 pt-28 sm:pb-20 sm:pt-36 lg:pt-40">
       <HeroBackdrop />
 
       <motion.div
@@ -23,39 +22,34 @@ export function Hero() {
         animate="show"
         variants={m.stagger}
       >
-        <motion.div variants={m.fadeUp}>
-          <Badge className="border-white/10 bg-ink/40 font-sans backdrop-blur-md">
-            Early access beta
-          </Badge>
-        </motion.div>
         <motion.h1
-          className="mx-auto mt-8 max-w-5xl text-balance font-display text-[2.5rem] font-semibold tracking-[-0.04em] text-snow sm:text-6xl md:text-7xl lg:text-[4.75rem] lg:leading-[1.02]"
+          className="mx-auto max-w-4xl text-balance font-display text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.035em] text-snow sm:text-5xl sm:leading-[1.06] md:text-6xl lg:text-[3.75rem] lg:leading-[1.05]"
           variants={m.fadeUp}
         >
           Measure coding agents like production software
         </motion.h1>
         <motion.p
-          className="mx-auto mt-6 max-w-2xl text-pretty font-sans text-base font-medium leading-7 tracking-[-0.01em] text-mute sm:text-lg sm:leading-8"
+          className="mx-auto mt-8 max-w-xl text-pretty font-sans text-sm font-normal leading-7 tracking-[-0.01em] text-mute sm:mt-10 sm:max-w-2xl sm:text-[15px] sm:leading-8"
           variants={m.fadeUp}
         >
           Sandboxed benchmarks, nine-dimension scorecards, and a cloud dashboard for every run —
           from local CLI to shared leaderboards in minutes.
         </motion.p>
         <motion.div
-          className="mt-9 flex flex-wrap items-center justify-center gap-3"
+          className="mt-12 flex flex-wrap items-center justify-center gap-3 sm:mt-14 sm:gap-4"
           variants={m.fadeUp}
         >
-          <MotionButton asChild size="lg" className="font-semibold tracking-[-0.01em]">
+          <MotionButton asChild size="default" className="h-10 px-5 text-[13px] font-medium tracking-[-0.01em]">
             <Link href="/signup">Start Building Free</Link>
           </MotionButton>
           <MotionButton
             asChild
-            size="lg"
+            size="default"
             variant="secondary"
-            className="font-semibold tracking-[-0.01em]"
+            className="h-10 px-5 text-[13px] font-medium tracking-[-0.01em]"
           >
             <Link href="/docs">
-              <Play aria-hidden="true" className="size-3.5 fill-current" />
+              <Play aria-hidden="true" className="size-3 fill-current" />
               Watch Demo
             </Link>
           </MotionButton>
@@ -63,7 +57,7 @@ export function Hero() {
       </motion.div>
 
       {/* Curve crest sits above dashboard; product frame occludes the lower arc */}
-      <div className="hero-product relative z-10 mt-10 sm:mt-14">
+      <div className="hero-product relative z-10 mt-20 sm:mt-28 lg:mt-32">
         <HeroCurve />
         <motion.div
           className="relative z-[2] mx-auto w-full max-w-[88rem] px-3 sm:px-6 lg:px-8"
