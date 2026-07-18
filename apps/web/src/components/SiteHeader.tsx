@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/BrandMark";
+import { MotionButton } from "@/components/motion/MotionButton";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { easeOutExpo } from "@/lib/motion";
 import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 
@@ -33,6 +36,7 @@ const links = [
 export function SiteHeader() {
   const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => {
@@ -43,29 +47,36 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const t = reduced
+    ? { duration: 0 }
+    : { duration: 0.5, ease: easeOutExpo };
+
   return (
-    <header
-      className={cn(
-        "site-header sticky top-0 z-40 flex justify-center px-3 sm:px-4",
-        "transition-[padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        scrolled ? "pt-3 pb-1" : "pt-0 pb-0",
-      )}
+    <motion.header
+      className="site-header sticky top-0 z-40 flex justify-center px-3 sm:px-4"
+      animate={{ paddingTop: scrolled ? 12 : 0, paddingBottom: scrolled ? 4 : 0 }}
+      transition={t}
     >
-      <div
+      <motion.div
         className={cn(
-          "site-header-shell relative flex h-14 w-full items-center justify-between gap-3",
-          "transition-[max-width,border-radius,background-color,border-color,box-shadow,padding,transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-          scrolled
-            ? "max-w-5xl translate-y-0 rounded-full border border-white/10 bg-ink/75 px-4 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.75)] backdrop-blur-xl sm:px-5"
-            : "max-w-7xl rounded-none border border-transparent bg-transparent px-5 sm:px-8",
+          "site-header-shell relative flex h-14 w-full items-center justify-between gap-3 backdrop-blur-xl",
+          scrolled ? "border border-white/10" : "border border-transparent",
         )}
+        animate={{
+          maxWidth: scrolled ? 1024 : 1280,
+          borderRadius: scrolled ? 9999 : 0,
+          paddingLeft: scrolled ? 20 : 32,
+          paddingRight: scrolled ? 20 : 32,
+          backgroundColor: scrolled ? "rgba(5, 7, 10, 0.82)" : "rgba(5, 7, 10, 0)",
+          boxShadow: scrolled
+            ? "0 12px 40px -12px rgba(0,0,0,0.75), 0 0 0 1px rgba(110,192,255,0.12), 0 0 40px -16px rgba(59,158,255,0.35)"
+            : "0 0 0 0 rgba(0,0,0,0)",
+        }}
+        transition={t}
       >
         <Link href="/" className="focus-ring shrink-0 rounded-lg">
           <BrandMark
-            className={cn(
-              "transition-[gap] duration-300",
-              scrolled && "gap-1.5 [&_span]:text-[13px] sm:[&_span]:text-[15px]",
-            )}
+            className={cn(scrolled && "gap-1.5 [&_span]:text-[13px] sm:[&_span]:text-[15px]")}
           />
         </Link>
 
@@ -73,7 +84,6 @@ export function SiteHeader() {
           aria-label="Primary"
           className={cn(
             "absolute left-1/2 hidden -translate-x-1/2 items-center text-sm text-mute lg:flex",
-            "transition-[gap] duration-300",
             scrolled ? "gap-4" : "gap-6",
           )}
         >
@@ -125,9 +135,9 @@ export function SiteHeader() {
             GitHub
           </a>
           {session?.user ? (
-            <Button asChild size="sm">
+            <MotionButton asChild size="sm">
               <Link href="/dashboard">Open Dashboard</Link>
-            </Button>
+            </MotionButton>
           ) : (
             <>
               <Link
@@ -136,13 +146,13 @@ export function SiteHeader() {
               >
                 Log in
               </Link>
-              <Button asChild size="sm" variant="secondary">
+              <MotionButton asChild size="sm" variant="secondary">
                 <Link href="/signup">Sign Up</Link>
-              </Button>
+              </MotionButton>
             </>
           )}
         </div>
-      </div>
-    </header>
+      </motion.div>
+    </motion.header>
   );
 }

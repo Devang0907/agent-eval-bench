@@ -1,4 +1,5 @@
 import { DashboardNav } from "@/components/DashboardNav";
+import { PageEnter } from "@/components/motion/PageEnter";
 import { RequireAuth } from "@/components/RequireAuth";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -13,7 +14,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main id="dashboard-content">
         <RequireAuth>
           <DashboardNav />
-          <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">{children}</div>
+          <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
+            <PageEnter>{children}</PageEnter>
+          </div>
         </RequireAuth>
       </main>
     </div>

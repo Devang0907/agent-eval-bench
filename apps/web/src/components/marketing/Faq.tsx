@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Reveal } from "@/components/motion/Reveal";
 
 const faqs = [
   {
@@ -22,11 +23,11 @@ const faqs = [
   },
   {
     q: "Can I upgrade or change plans later?",
-    a: "Yes. When paid tiers ship, you can upgrade from the dashboard. Your synced history stays attached to your account.",
+    a: "Yes. When Pro and Team ship, you can upgrade from the dashboard. Your synced history stays attached to your account.",
   },
   {
     q: "Do you offer yearly billing?",
-    a: "Not yet. Current access is free. Yearly options will appear when Pro and Team plans launch.",
+    a: "Not yet. Current access is free. Yearly options will appear when paid plans launch.",
   },
   {
     q: "Can I cancel anytime?",
@@ -36,27 +37,33 @@ const faqs = [
 
 export function Faq() {
   return (
-    <section id="faq" className="scroll-mt-20 py-24">
-      <div className="container-wide grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <div>
+    <section id="faq" className="scroll-mt-20 py-28">
+      <div className="container-wide grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <Reveal>
           <span className="section-badge">FAQs</span>
-          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-[-0.03em] text-snow sm:text-4xl">
+          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-[-0.03em] text-snow sm:text-5xl">
             Frequently asked questions
           </h2>
           <p className="mt-4 max-w-md text-pretty text-mute">
             Straight answers about the free CLI, cloud sync, and how device login connects your
             terminal.
           </p>
-        </div>
+        </Reveal>
 
-        <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((item, index) => (
-            <AccordionItem key={item.q} value={`item-${index}`}>
-              <AccordionTrigger>{item.q}</AccordionTrigger>
-              <AccordionContent>{item.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <Reveal>
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((item, index) => (
+              <AccordionItem
+                key={item.q}
+                value={`item-${index}`}
+                className="rounded-3xl border-white/[0.08] bg-panel/55 px-6"
+              >
+                <AccordionTrigger className="py-5 text-[15px]">{item.q}</AccordionTrigger>
+                <AccordionContent className="pb-5">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
       </div>
     </section>
   );

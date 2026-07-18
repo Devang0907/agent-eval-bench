@@ -12,7 +12,7 @@ function AccordionItem({
 }: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>) {
   return (
     <AccordionPrimitive.Item
-      className={cn("rounded-2xl border border-line bg-panel/60 px-5", className)}
+      className={cn("rounded-2xl border border-white/[0.08] bg-panel/60 px-5", className)}
       {...props}
     />
   );

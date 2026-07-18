@@ -1,57 +1,127 @@
+"use client";
+
 import Link from "next/link";
 import { Play } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { HeroBackdrop } from "@/components/marketing/HeroBackdrop";
 import { ProductPreview } from "@/components/marketing/ProductPreview";
+import { MotionButton } from "@/components/motion/MotionButton";
+import { motionSafe } from "@/lib/motion";
 
 export function Hero() {
+  const reduced = useReducedMotion();
+  const m = motionSafe(reduced);
+
   return (
-    <section className="relative isolate min-h-[100svh] overflow-hidden pb-10 pt-10 sm:pt-14">
+    <section className="relative isolate min-h-[100svh] overflow-hidden pb-12 pt-12 sm:pt-16">
       <HeroBackdrop />
 
-      <div className="container-wide relative z-10 text-center">
-        <Badge className="animate-rise border-white/10 bg-ink/40 font-sans backdrop-blur-md">
-          Early access beta
-        </Badge>
-        <h1 className="animate-rise delay-1 mx-auto mt-7 max-w-4xl text-balance font-display text-4xl font-semibold tracking-[-0.035em] text-snow sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.02]">
+      <motion.div
+        className="container-wide relative z-10 text-center"
+        initial="hidden"
+        animate="show"
+        variants={m.stagger}
+      >
+        <motion.div variants={m.fadeUp}>
+          <Badge className="border-white/10 bg-ink/40 font-sans backdrop-blur-md">
+            Early access beta
+          </Badge>
+        </motion.div>
+        <motion.h1
+          className="mx-auto mt-8 max-w-5xl text-balance font-display text-[2.5rem] font-semibold tracking-[-0.04em] text-snow sm:text-6xl md:text-7xl lg:text-[4.75rem] lg:leading-[1.02]"
+          variants={m.fadeUp}
+        >
           Measure coding agents like production software
-        </h1>
-        <p className="animate-rise delay-2 mx-auto mt-5 max-w-2xl text-pretty font-sans text-[15px] font-medium leading-7 tracking-[-0.01em] text-mute sm:text-lg sm:leading-8">
+        </motion.h1>
+        <motion.p
+          className="mx-auto mt-6 max-w-2xl text-pretty font-sans text-base font-medium leading-7 tracking-[-0.01em] text-mute sm:text-lg sm:leading-8"
+          variants={m.fadeUp}
+        >
           Sandboxed benchmarks, nine-dimension scorecards, and a cloud dashboard for every run —
           from local CLI to shared leaderboards in minutes.
-        </p>
-        <div className="animate-rise delay-2 mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button asChild size="lg" className="font-semibold tracking-[-0.01em]">
+        </motion.p>
+        <motion.div
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
+          variants={m.fadeUp}
+        >
+          <MotionButton asChild size="lg" className="font-semibold tracking-[-0.01em]">
             <Link href="/signup">Start Building Free</Link>
-          </Button>
-          <Button asChild size="lg" variant="secondary" className="font-semibold tracking-[-0.01em]">
+          </MotionButton>
+          <MotionButton
+            asChild
+            size="lg"
+            variant="secondary"
+            className="font-semibold tracking-[-0.01em]"
+          >
             <Link href="/docs">
               <Play aria-hidden="true" className="size-3.5 fill-current" />
-              Read the Docs
+              Watch Demo
             </Link>
-          </Button>
-        </div>
-      </div>
+          </MotionButton>
+        </motion.div>
+      </motion.div>
 
-      <div className="relative z-10 mt-16 sm:mt-24">
-        {/* Half-circle sits behind the product frame */}
+      <div className="relative z-10 mt-20 sm:mt-28">
         <div
-          className="pointer-events-none absolute inset-x-0 top-[18%] -z-10 h-[120%] sm:top-[22%]"
+          className="pointer-events-none absolute inset-x-0 top-[12%] -z-10 h-[130%] sm:top-[16%]"
           aria-hidden="true"
         >
-          <div className="hero-half-circle hero-half-circle--product">
+          <motion.div
+            className="hero-half-circle hero-half-circle--product"
+            animate={
+              reduced
+                ? undefined
+                : {
+                    opacity: [0.9, 1, 0.9],
+                    scale: [1, 1.015, 1],
+                  }
+            }
+            transition={
+              reduced
+                ? undefined
+                : {
+                    duration: 5.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }
+            }
+          >
             <div className="hero-half-circle-fill" />
             <div className="hero-half-circle-rim" />
-            <div className="hero-half-circle-hot" />
-          </div>
+            <motion.div
+              className="hero-half-circle-hot"
+              animate={
+                reduced
+                  ? undefined
+                  : {
+                      opacity: [0.75, 1, 0.75],
+                    }
+              }
+              transition={
+                reduced
+                  ? undefined
+                  : {
+                      duration: 3.2,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }
+              }
+            />
+          </motion.div>
         </div>
 
-        <div className="container-wide relative px-3 sm:px-8">
+        <motion.div
+          className="container-wide relative px-3 sm:px-8"
+          initial="hidden"
+          animate="show"
+          variants={m.fadeUp}
+          transition={{ delay: reduced ? 0 : 0.28 }}
+        >
           <div className="product-frame-glow relative">
             <ProductPreview />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
