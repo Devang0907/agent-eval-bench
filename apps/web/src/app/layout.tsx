@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   },
   description:
     "Evaluate AI coding agents with sandboxed benchmarks, then sync runs, logs, and leaderboards to the cloud.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

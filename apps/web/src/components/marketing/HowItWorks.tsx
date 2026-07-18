@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
 import { Reveal, RevealItem, RevealStagger } from "@/components/motion/Reveal";
 
 const steps = [
@@ -8,71 +7,116 @@ const steps = [
     step: "01",
     title: "Describe & init",
     body: "Install the CLI, scaffold a suite, and point it at your agent adapter.",
+    preview: [
+      { tone: "mute", text: "$ npm i -g agent-eval-bench" },
+      { tone: "mute", text: "$ agent-eval-bench init recovery" },
+      { tone: "accent", text: "✓ suite ready · adapter: mock-local" },
+    ],
   },
   {
     step: "02",
     title: "Run locally",
     body: "Execute sandboxed benchmarks offline. Scorecards land on disk before anything syncs.",
+    preview: [
+      { tone: "mute", text: "$ agent-eval-bench run --suite recovery" },
+      { tone: "fog", text: "validators · planning · recovery" },
+      { tone: "accent", text: "✓ scorecard 86.4 written to disk" },
+    ],
   },
   {
     step: "03",
     title: "Sync & share",
     body: "Device-login once, then push runs, telemetry, and leaderboards to your dashboard.",
+    preview: [
+      { tone: "mute", text: "$ agent-eval-bench login" },
+      { tone: "mute", text: "$ agent-eval-bench sync" },
+      { tone: "accent", text: "✓ 24 runs live on dashboard" },
+    ],
   },
-];
+] as const;
 
 export function HowItWorks() {
-  const reduced = useReducedMotion();
-
   return (
-    <section id="how-it-works" className="scroll-mt-20 py-28">
+    <section id="how-it-works" className="scroll-mt-20 py-28 sm:py-32">
       <div className="container-wide">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="section-badge">How it Works</span>
-          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-[-0.03em] text-snow sm:text-5xl">
-            From local eval to cloud visibility in minutes
-          </h2>
-          <p className="mt-4 text-pretty text-sm text-mute sm:text-base">
-            A short loop you already know from modern developer tools — init, run, link, inspect.
-          </p>
-        </Reveal>
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.25fr)] lg:gap-20">
+          <Reveal className="max-w-md lg:sticky lg:top-28 lg:self-start">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
+              How it works
+            </p>
+            <h2 className="mt-4 text-balance font-display text-3xl font-semibold tracking-[-0.035em] text-snow sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+              From local eval to cloud visibility in minutes
+            </h2>
+            <p className="mt-5 text-pretty text-sm leading-7 text-white/40">
+              A short loop you already know from modern developer tools — init, run, link, inspect.
+            </p>
+          </Reveal>
 
-        <div className="relative mt-16">
-          {/* Connector through badge centers (badge center ≈ card pad 32px + half of 48px) */}
-          <div
-            className="pointer-events-none absolute left-[16.5%] right-[16.5%] top-[3.5rem] z-0 hidden h-px md:block"
-            aria-hidden="true"
-          >
-            <div className="h-full w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/35 to-transparent blur-[1px]" />
-          </div>
+          <RevealStagger className="relative" fast>
+            {/* Vertical spine */}
+            <div
+              className="pointer-events-none absolute bottom-6 left-[1.125rem] top-6 hidden w-px bg-gradient-to-b from-white/10 via-white/15 to-transparent sm:block"
+              aria-hidden="true"
+            />
 
-          <RevealStagger className="relative z-[1] grid gap-4 md:grid-cols-3" fast>
-            {steps.map((item) => (
-              <RevealItem key={item.step}>
-                <motion.article
-                  className="group relative h-full overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-[#0c0e12] p-7 sm:p-8"
-                  whileHover={reduced ? undefined : { y: -3 }}
-                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                >
-                  <div
-                    className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-                    aria-hidden="true"
-                  />
+            <ol className="relative space-y-0">
+              {steps.map((item, index) => (
+                <RevealItem key={item.step}>
+                  <li className="relative grid gap-5 py-8 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-8 sm:py-10">
+                    {index < steps.length - 1 ? (
+                      <div
+                        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-white/10 via-white/[0.06] to-transparent"
+                        aria-hidden="true"
+                      />
+                    ) : null}
 
-                  <div className="relative mb-6 flex size-12 items-center justify-center rounded-full border border-accent/35 bg-[#0c0e12] shadow-[0_0_0_1px_rgba(80,180,255,0.08),0_0_28px_-4px_rgba(80,180,255,0.55)]">
-                    <span className="font-mono text-[13px] font-medium tracking-wide text-accent-soft">
-                      {item.step}
-                    </span>
-                  </div>
+                    <div className="relative flex items-start sm:justify-center">
+                      <span className="relative z-[1] flex size-9 items-center justify-center rounded-full border border-white/10 bg-black font-mono text-[11px] font-medium text-white/55 sm:size-9">
+                        {item.step}
+                      </span>
+                    </div>
 
-                  <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-snow">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-6 text-mute">{item.body}</p>
-                </motion.article>
-              </RevealItem>
-            ))}
+                    <div className="min-w-0">
+                      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+                        <div className="max-w-sm">
+                          <h3 className="font-display text-lg font-semibold tracking-[-0.02em] text-snow sm:text-xl">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 text-sm leading-6 text-white/40">{item.body}</p>
+                        </div>
+
+                        <div className="w-full max-w-md overflow-hidden rounded-xl border border-white/[0.07] bg-[#07090d]">
+                          <div className="flex items-center gap-1.5 border-b border-white/[0.05] px-3 py-2">
+                            <span className="size-1.5 rounded-full bg-white/15" />
+                            <span className="size-1.5 rounded-full bg-white/15" />
+                            <span className="size-1.5 rounded-full bg-white/15" />
+                            <span className="ml-2 font-mono text-[10px] text-white/25">
+                              terminal
+                            </span>
+                          </div>
+                          <div className="space-y-1.5 px-3.5 py-3 font-mono text-[11px] leading-5 sm:text-[12px]">
+                            {item.preview.map((line) => (
+                              <p
+                                key={line.text}
+                                className={
+                                  line.tone === "accent"
+                                    ? "text-accent-soft/90"
+                                    : line.tone === "fog"
+                                      ? "text-white/45"
+                                      : "text-white/30"
+                                }
+                              >
+                                {line.text}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </RevealItem>
+              ))}
+            </ol>
           </RevealStagger>
         </div>
       </div>
