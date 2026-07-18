@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Pixel "a" mark inspired by Aider's terminal logo -->
+  <path
+    fill="#fff"
+    d="M8 3h7v3H8V3zm7 3h3v3h-3V6zm3 3h3v9h-3V9zM8 9h7v3H8V9zm-3 3h3v3H5v-3zm-3 3h3v7H2v-7zm3 7h3v3H5v-3zm3-6h7v3H8v-3zm10 3h3v6h-3v-6zm-3 6h3v3h-3v-3z"
+  />
+</svg>

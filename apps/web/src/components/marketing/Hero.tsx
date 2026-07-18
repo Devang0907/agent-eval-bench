@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Play } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
-import { HeroBackdrop } from "@/components/marketing/HeroBackdrop";
+import { HeroBackdrop, HeroCurve } from "@/components/marketing/HeroBackdrop";
 import { ProductPreview } from "@/components/marketing/ProductPreview";
 import { MotionButton } from "@/components/motion/MotionButton";
 import { motionSafe } from "@/lib/motion";
@@ -14,7 +14,7 @@ export function Hero() {
   const m = motionSafe(reduced);
 
   return (
-    <section className="relative isolate min-h-[100svh] overflow-hidden pb-12 pt-12 sm:pt-16">
+    <section className="relative isolate min-h-[100svh] overflow-hidden pb-12 -mt-14 pt-[4.5rem] sm:pt-20">
       <HeroBackdrop />
 
       <motion.div
@@ -62,57 +62,11 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <div className="relative z-10 mt-20 sm:mt-28">
-        <div
-          className="pointer-events-none absolute inset-x-0 top-[12%] -z-10 h-[130%] sm:top-[16%]"
-          aria-hidden="true"
-        >
-          <motion.div
-            className="hero-half-circle hero-half-circle--product"
-            animate={
-              reduced
-                ? undefined
-                : {
-                    opacity: [0.9, 1, 0.9],
-                    scale: [1, 1.015, 1],
-                  }
-            }
-            transition={
-              reduced
-                ? undefined
-                : {
-                    duration: 5.5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }
-            }
-          >
-            <div className="hero-half-circle-fill" />
-            <div className="hero-half-circle-rim" />
-            <motion.div
-              className="hero-half-circle-hot"
-              animate={
-                reduced
-                  ? undefined
-                  : {
-                      opacity: [0.75, 1, 0.75],
-                    }
-              }
-              transition={
-                reduced
-                  ? undefined
-                  : {
-                      duration: 3.2,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                    }
-              }
-            />
-          </motion.div>
-        </div>
-
+      {/* Curve crest sits above dashboard; product frame occludes the lower arc */}
+      <div className="hero-product relative z-10 mt-10 sm:mt-14">
+        <HeroCurve />
         <motion.div
-          className="container-wide relative px-3 sm:px-8"
+          className="relative z-[2] mx-auto w-full max-w-[88rem] px-3 sm:px-6 lg:px-8"
           initial="hidden"
           animate="show"
           variants={m.fadeUp}

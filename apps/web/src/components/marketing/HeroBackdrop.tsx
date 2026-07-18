@@ -1,27 +1,25 @@
-/** Page-level atmosphere — mesh, watermark, grain. Half-circle lives with the product. */
+/** Ambient hero atmosphere. Curve lives behind the dashboard. */
 export function HeroBackdrop() {
   return (
-    <div
-      className="hero-backdrop pointer-events-none absolute inset-0 overflow-hidden"
-      aria-hidden="true"
-    >
-      <div className="hero-mesh absolute inset-0" />
-      <div className="hero-top-light absolute inset-x-0 top-0 h-[55%]" />
+    <div className="hero-atmosphere" aria-hidden="true">
+      <div className="hero-atmosphere__base" />
+      <div className="hero-atmosphere__fog" />
+      <div className="hero-atmosphere__noise" />
+      <div className="hero-atmosphere__vignette" />
+    </div>
+  );
+}
 
-      <p
-        className="hero-watermark absolute left-1/2 top-[-4%] -translate-x-1/2 select-none font-display font-semibold text-white"
-        translate="no"
-      >
-        AGENT
-      </p>
-
-      {/* Soft ambient glow near bottom (half-circle detail is under the product) */}
-      <div className="hero-horizon absolute inset-x-0 bottom-0 h-[45%]">
-        <div className="hero-horizon-bloom opacity-60" />
+/** Cyan horizon curve — crest sits just above the dashboard top. */
+export function HeroCurve() {
+  return (
+    <div className="hero-curve-stage" aria-hidden="true">
+      <div className="hero-curve">
+        <div className="hero-curve__bloom" />
+        <div className="hero-curve__glow" />
+        <div className="hero-curve__rim" />
+        <div className="hero-curve__core" />
       </div>
-
-      <div className="hero-grain absolute inset-0" />
-      <div className="hero-vignette absolute inset-x-0 bottom-0 h-40" />
     </div>
   );
 }

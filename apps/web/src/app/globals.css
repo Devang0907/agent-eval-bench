@@ -6,8 +6,8 @@
   --font-display: var(--font-space), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), "Cascadia Code", ui-monospace, monospace;
 
-  --color-ink: #05070a;
-  --color-ink-soft: #0a0e14;
+  --color-ink: #000000;
+  --color-ink-soft: #0a0a0a;
   --color-panel: #10151c;
   --color-line: #232a35;
   --color-mute: #8b93a0;
@@ -50,12 +50,8 @@
 
   body {
     @apply bg-ink text-snow antialiased;
-    background-color: #05070a;
-    background-image:
-      radial-gradient(120% 80% at 50% -10%, rgba(56, 100, 180, 0.22), transparent 55%),
-      radial-gradient(80% 50% at 80% 20%, rgba(30, 60, 120, 0.12), transparent 50%),
-      radial-gradient(70% 40% at 15% 30%, rgba(20, 50, 100, 0.1), transparent 45%),
-      linear-gradient(180deg, #070b12 0%, #05070a 40%, #040508 100%);
+    background-color: #000000;
+    background-image: none;
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
   }
@@ -91,114 +87,190 @@
   }
 
   .product-frame {
-    @apply relative overflow-hidden rounded-3xl border border-white/12 bg-[#0a0e14]/92 shadow-2xl shadow-black/60 backdrop-blur-sm;
+    @apply relative overflow-hidden rounded-[24px] border border-white/12 bg-[#0a0e14] shadow-2xl shadow-black/60;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.04) inset,
       0 24px 80px -24px rgba(0, 0, 0, 0.75);
   }
 
+  .product-frame--glass {
+    border: 1px solid rgba(140, 220, 255, 0.4);
+    background: #0a0e14;
+    box-shadow:
+      0 0 0 1px rgba(180, 235, 255, 0.1) inset,
+      0 0 24px -4px rgba(80, 190, 255, 0.35),
+      0 0 0 1px rgba(80, 180, 255, 0.12),
+      0 28px 90px -28px rgba(0, 0, 0, 0.85);
+  }
+
+  .product-glass-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
   .product-frame-glow {
-    filter: drop-shadow(0 0 48px rgba(80, 170, 255, 0.22));
+    filter: drop-shadow(0 0 48px rgba(80, 180, 255, 0.22));
   }
 
-  /* —— Hero atmosphere (Codable-style) —— */
-  .hero-mesh {
-    background:
-      radial-gradient(90% 70% at 50% 0%, rgba(40, 80, 160, 0.28) 0%, transparent 60%),
-      radial-gradient(60% 50% at 20% 40%, rgba(20, 50, 110, 0.18) 0%, transparent 55%),
-      radial-gradient(55% 45% at 85% 35%, rgba(30, 70, 140, 0.16) 0%, transparent 50%),
-      radial-gradient(100% 80% at 50% 100%, rgba(8, 20, 50, 0.9) 0%, transparent 55%),
-      #05070a;
+  .hero-product {
+    isolation: isolate;
+    /* Room for the arc crest to sit above the dashboard */
+    padding-top: clamp(72px, 10vw, 120px);
   }
 
-  .hero-top-light {
-    background: radial-gradient(
-      70% 100% at 50% 0%,
-      rgba(120, 160, 220, 0.14) 0%,
-      rgba(60, 100, 180, 0.06) 40%,
-      transparent 70%
-    );
+  /* Anchor at dashboard top edge (after padding) */
+  .hero-curve-stage {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* Align with the top of the product frame (inside padding) */
+    top: clamp(72px, 10vw, 120px);
+    height: 0;
+    z-index: 0;
+    overflow: visible;
+    transform: translateZ(0);
   }
 
-  .hero-watermark {
-    font-size: clamp(7rem, 30vw, 24rem);
-    line-height: 0.82;
-    letter-spacing: -0.06em;
-    opacity: 0.055;
-    mix-blend-mode: soft-light;
-    white-space: nowrap;
-    mask-image: linear-gradient(180deg, black 15%, transparent 88%);
-  }
-
-  /* Planetary half-circle — only the upper crescent is visible */
-  .hero-half-circle {
+  /*
+   * Wide shallow cyan arc.
+   * Circle center sits below the dashboard top so only the crest
+   * rises ~70–100px above the product frame (Codable-style halo).
+   */
+  .hero-curve {
     position: absolute;
     left: 50%;
     top: 0;
-    width: min(1400px, 155vw);
+    width: min(240vw, 2800px);
     aspect-ratio: 1;
-    transform: translateX(-50%);
+    /* Larger radius — center further below so crest still peeks above dashboard */
+    transform: translate3d(-50%, calc(-50% + 980px), 0);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 49%, transparent 51%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 49%, transparent 51%);
   }
 
-  .hero-half-circle--product {
-    top: -2%;
+  .hero-curve__bloom {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    height: 50%;
+    transform: translate3d(-50%, -100%, 0);
+    background: radial-gradient(
+      ellipse 70% 80% at 50% 100%,
+      rgba(100, 210, 255, 0.65) 0%,
+      rgba(50, 160, 255, 0.35) 28%,
+      rgba(30, 100, 220, 0.12) 50%,
+      transparent 70%
+    );
+    filter: blur(48px);
+    animation: hero-glow-pulse 24s ease-in-out infinite;
+    will-change: opacity;
   }
 
-  .hero-half-circle-fill {
+  .hero-curve__glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 78%;
+    height: 78%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 50%;
+    box-shadow:
+      0 -4px 40px 12px rgba(80, 190, 255, 0.35),
+      0 -20px 90px 28px rgba(50, 150, 255, 0.28),
+      0 -40px 140px 50px rgba(40, 120, 255, 0.16);
+  }
+
+  .hero-curve__rim {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 78%;
+    height: 78%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 2px rgba(200, 240, 255, 0.55),
+      0 -3px 18px 4px rgba(120, 210, 255, 0.7),
+      0 -10px 48px 12px rgba(70, 180, 255, 0.45);
+    animation: hero-rim-glow 22s ease-in-out infinite;
+    will-change: opacity;
+  }
+
+  /* Bright white-cyan core line along the crest */
+  .hero-curve__core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 78%;
+    height: 78%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.95);
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 42%,
+      #000 47%,
+      #000 50%,
+      transparent 50.5%
+    );
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 42%,
+      #000 47%,
+      #000 50%,
+      transparent 50.5%
+    );
+  }
+
+  /* —— Pure CSS hero atmosphere (no images) —— */
+  .hero-atmosphere {
+    pointer-events: none;
     position: absolute;
     inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at 50% 36%,
-      rgba(255, 255, 255, 0.85) 0%,
-      rgba(160, 225, 255, 0.65) 8%,
-      rgba(80, 180, 255, 0.42) 20%,
-      rgba(40, 120, 255, 0.22) 38%,
-      transparent 56%
-    );
-    filter: blur(0.5px);
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 44%, transparent 52%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 44%, transparent 52%);
+    overflow: hidden;
+    isolation: isolate;
+    background: #000000;
+    transform: translateZ(0);
   }
 
-  .hero-half-circle-rim {
+  .hero-atmosphere__base {
     position: absolute;
-    left: 50%;
-    top: 40%;
-    width: 74%;
-    height: 74%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 2px rgba(220, 245, 255, 0.55),
-      0 -4px 30px 4px rgba(180, 235, 255, 0.7),
-      0 -22px 80px 14px rgba(80, 180, 255, 0.5),
-      0 -50px 140px 40px rgba(40, 130, 255, 0.28);
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 54%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 54%);
+    inset: 0;
+    background:
+      radial-gradient(80% 45% at 50% 0%, rgba(40, 90, 180, 0.08) 0%, transparent 55%),
+      #000000;
   }
 
-  .hero-half-circle-hot {
+  .hero-atmosphere__fog {
     position: absolute;
-    left: 50%;
-    top: 40.5%;
-    width: min(720px, 58%);
-    height: 4px;
-    transform: translate(-50%, -50%);
-    border-radius: 9999px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(180, 230, 255, 0.55) 14%,
-      rgba(255, 255, 255, 1) 50%,
-      rgba(180, 230, 255, 0.55) 86%,
-      transparent 100%
-    );
-    box-shadow:
-      0 0 20px 6px rgba(220, 245, 255, 0.95),
-      0 0 56px 18px rgba(100, 195, 255, 0.65),
-      0 0 120px 44px rgba(50, 150, 255, 0.35),
-      0 -32px 70px 16px rgba(60, 150, 255, 0.22);
+    inset: 0;
+    background: radial-gradient(60% 40% at 50% 70%, rgba(80, 160, 255, 0.04) 0%, transparent 70%);
+    animation: hero-fog-drift 28s ease-in-out infinite;
+    will-change: opacity;
+  }
+
+  .hero-atmosphere__noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image:
+      repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35) 0 0.5px, transparent 0.7px 3px),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 2px);
+    background-size: 120px 120px, 3px 3px;
+  }
+
+  .hero-atmosphere__vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 40%, transparent 40%, rgba(8, 8, 8, 0.5) 100%),
+      linear-gradient(180deg, transparent 60%, #000000 100%);
   }
 
   .marquee-track {
@@ -212,6 +284,17 @@
     animation-play-state: paused;
   }
 
+  /* Infinite logo strip — right → left */
+  .trusted-marquee-track {
+    animation: trusted-marquee 95s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .trusted-marquee:hover .trusted-marquee-track {
+    animation-play-state: paused;
+  }
+
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -221,9 +304,59 @@
     }
   }
 
+  @keyframes trusted-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes hero-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.75;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hero-rim-glow {
+    0%,
+    100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hero-fog-drift {
+    0%,
+    100% {
+      opacity: 0.85;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
+    .marquee-track,
+    .trusted-marquee-track,
+    .hero-atmosphere__fog,
+    .hero-curve__bloom,
+    .hero-curve__rim {
+      animation: none !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-curve {
+      width: min(280vw, 2000px);
+      transform: translate3d(-50%, calc(-50% + 720px), 0);
     }
   }
 
@@ -234,8 +367,8 @@
     height: 85%;
     background: radial-gradient(
       50% 65% at 50% 85%,
-      rgba(110, 200, 255, 0.55) 0%,
-      rgba(50, 140, 255, 0.28) 28%,
+      rgba(110, 200, 255, 0.5) 0%,
+      rgba(50, 140, 255, 0.25) 32%,
       transparent 70%
     );
     filter: blur(10px);
@@ -250,30 +383,31 @@
     transform: translateX(-50%);
     background: radial-gradient(
       55% 100% at 50% 100%,
-      rgba(210, 240, 255, 0.9) 0%,
-      rgba(100, 200, 255, 0.55) 20%,
+      rgba(210, 240, 255, 0.85) 0%,
+      rgba(100, 200, 255, 0.45) 22%,
       transparent 65%
     );
     filter: blur(18px);
   }
 
   .hero-grain {
-    opacity: 0.28;
+    opacity: 0.2;
     mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 180px 180px;
+    background-image:
+      repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35) 0 0.5px, transparent 0.7px 3px),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 2px);
+    background-size: 120px 120px, 3px 3px;
   }
 
   .hero-vignette {
-    background: linear-gradient(180deg, transparent 0%, #05070a 100%);
+    background: linear-gradient(180deg, transparent 0%, #000000 100%);
   }
 
   .glow-horizon {
     background: radial-gradient(
       70% 80% at 50% 100%,
-      rgba(90, 180, 255, 0.5) 0%,
-      rgba(40, 120, 255, 0.22) 35%,
+      rgba(243, 107, 51, 0.4) 0%,
+      rgba(91, 140, 255, 0.15) 35%,
       transparent 70%
     );
     filter: blur(6px);
@@ -345,8 +479,9 @@
     transition: none !important;
   }
 
-  .hero-grain {
-    opacity: 0.12;
+  .hero-grain,
+  .hero-atmosphere__noise {
+    opacity: 0.08;
   }
 }
 

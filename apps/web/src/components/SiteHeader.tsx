@@ -58,17 +58,17 @@ export function SiteHeader() {
     >
       <motion.div
         className={cn(
-          "site-header-shell relative flex h-14 w-full items-center justify-between gap-3 backdrop-blur-xl",
-          scrolled ? "border border-white/10" : "border border-transparent",
+          "site-header-shell relative flex h-14 w-full items-center justify-between gap-3",
+          scrolled ? "border border-white/10 backdrop-blur-xl" : "border border-transparent",
         )}
         animate={{
           maxWidth: scrolled ? 1024 : 1280,
           borderRadius: scrolled ? 9999 : 0,
           paddingLeft: scrolled ? 20 : 32,
           paddingRight: scrolled ? 20 : 32,
-          backgroundColor: scrolled ? "rgba(5, 7, 10, 0.82)" : "rgba(5, 7, 10, 0)",
+          backgroundColor: scrolled ? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0)",
           boxShadow: scrolled
-            ? "0 12px 40px -12px rgba(0,0,0,0.75), 0 0 0 1px rgba(110,192,255,0.12), 0 0 40px -16px rgba(59,158,255,0.35)"
+            ? "0 12px 40px -12px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.08)"
             : "0 0 0 0 rgba(0,0,0,0)",
         }}
         transition={t}
