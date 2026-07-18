@@ -1,0 +1,21 @@
+id: tool-usage/write-tool
+name: "Use Write Tool"
+description: "Create a file using tools rather than claiming success"
+difficulty: easy
+category: tool-usage
+prompt: |
+  Create tools-ok.txt with "ok".
+repository:
+  files: {}
+expected:
+  files:
+    - path: tools-ok.txt
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "tools-ok.txt"
+  - name: max-tool-calls
+    params:
+      max: 20
+timeout: 180000

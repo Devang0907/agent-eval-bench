@@ -1,0 +1,18 @@
+id: filesystem/nested-path
+name: "Nested Path"
+description: "Create deeply nested file"
+difficulty: easy
+category: filesystem
+prompt: |
+  Create a/b/c/d.txt with "deep".
+repository:
+  files: {}
+expected:
+  files:
+    - path: a/b/c/d.txt
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "a/b/c/d.txt"
+timeout: 180000

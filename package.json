@@ -1,0 +1,30 @@
+{
+  "name": "agent-eval-bench",
+  "version": "0.1.1",
+  "description": "Playwright + Lighthouse + Vitest for AI coding agents",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run --filter agent-eval-bench build",
+    "test": "bun run --filter '*' test",
+    "typecheck": "bun run --filter '*' typecheck",
+    "lint": "bun run --filter '*' lint",
+    "dev": "bun run --filter agent-eval-bench dev",
+    "cli": "bun packages/cli/src/bin.ts",
+    "generate:benchmarks": "bun packages/benchmarks/scripts/generate.ts",
+    "clean": "rimraf packages/*/dist packages/*/tsconfig.tsbuildinfo",
+    "publish:public": "npm publish --access public"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5",
+    "rimraf": "^6.0.1"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "packageManager": "bun@1.3.0",
+  "license": "MIT"
+}

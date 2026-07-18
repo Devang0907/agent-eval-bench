@@ -1,0 +1,18 @@
+id: recovery/broken-tests
+name: "Broken Tests"
+description: "Fix a failing test"
+difficulty: hard
+category: recovery
+prompt: |
+  Tests are failing. Fix src/math.js so tests pass.
+repository:
+  fixture: node-with-tests
+  files:
+    "src/math.js": "export const add = (a, b) => a - b;\n"
+    "src/math.test.js": "import { test } from \"node:test\";\nimport assert from \"node:assert\";\nimport { add } from \"./math.js\";\ntest(\"add\", () => assert.equal(add(1, 2), 3));\n"
+    "package.json": "{\"name\":\"broken\",\"type\":\"module\",\"scripts\":{\"test\":\"node --test\"}}"
+validators:
+  - name: tests-pass
+    params:
+      cmd: "npm test"
+timeout: 180000

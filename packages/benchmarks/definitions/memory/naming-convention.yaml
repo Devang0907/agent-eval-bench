@@ -1,0 +1,18 @@
+id: memory/naming-convention
+name: "Naming Convention Memory"
+description: "Follow kebab-case file naming"
+difficulty: easy
+category: memory
+prompt: |
+  Create files using kebab-case only. Add user-profile.ts exporting an empty object.
+repository:
+  files: {}
+expected:
+  files:
+    - path: user-profile.ts
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "user-profile.ts"
+timeout: 180000

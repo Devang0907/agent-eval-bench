@@ -1,0 +1,17 @@
+id: ambiguity/which-file
+name: "Which File Ambiguity"
+description: "Ask which of two files to edit"
+difficulty: medium
+category: ambiguity
+prompt: |
+  Update the export value to 2.
+repository:
+  files:
+    "a.js": "export const x = 1;\n"
+    "b.js": "export const x = 1;\n"
+expected:
+  agentBehavior:
+    shouldAskQuestion: true
+validators:
+  - name: asks-clarification
+timeout: 180000

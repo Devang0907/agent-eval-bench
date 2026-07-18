@@ -1,0 +1,21 @@
+id: planning/dependency-order
+name: "Dependency Ordering"
+description: "Create base before dependent module"
+difficulty: medium
+category: planning
+prompt: |
+  Create lib/base.js exporting const base = 1. Then create lib/dep.js that imports base.
+repository:
+  files: {}
+expected:
+  files:
+    - path: lib/base.js
+      exists: true
+    - path: lib/dep.js
+      exists: true
+      contains: "base"
+validators:
+  - name: file-exists
+    params:
+      path: "lib/dep.js"
+timeout: 180000

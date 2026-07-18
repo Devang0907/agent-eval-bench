@@ -1,0 +1,19 @@
+id: filesystem/hidden-file
+name: "Hidden File"
+description: "Create a dotfile"
+difficulty: easy
+category: filesystem
+prompt: |
+  Create .env.example with KEY=value
+repository:
+  files: {}
+expected:
+  files:
+    - path: .env.example
+      exists: true
+      contains: "KEY="
+validators:
+  - name: file-exists
+    params:
+      path: ".env.example"
+timeout: 180000

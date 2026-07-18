@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@agent-eval-bench/*": ["./packages/*/src"],
+      "agent-eval-bench": ["./packages/cli/src"]
+    }
+  },
+  "include": [
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.tsx",
+    "packages/*/test/**/*.ts",
+    "examples/agent-eval-bench-plugin-example/**/*.ts",
+    "vitest.config.ts"
+  ]
+}

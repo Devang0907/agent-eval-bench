@@ -1,0 +1,13 @@
+id: verification/typecheck-script
+name: "Run Typecheck"
+description: "Run typecheck script"
+difficulty: easy
+category: verification
+prompt: |
+  Run npm run typecheck successfully.
+repository:
+  files:
+    "package.json": "{\"name\":\"types-fixture\",\"scripts\":{\"typecheck\":\"echo types-ok\"}}"
+validators:
+  - name: typecheck-passes
+timeout: 180000

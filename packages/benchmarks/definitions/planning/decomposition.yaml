@@ -1,0 +1,25 @@
+id: planning/decomposition
+name: "Task Decomposition"
+description: "Create milestone files in order"
+difficulty: medium
+category: planning
+prompt: |
+  Build a tiny project in steps: 1) create plan.md with a checklist, 2) create src/index.js that logs hi, 3) create DONE.md saying complete.
+repository:
+  files: {}
+expected:
+  files:
+    - path: plan.md
+      exists: true
+    - path: src/index.js
+      exists: true
+    - path: DONE.md
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "plan.md"
+  - name: file-exists
+    params:
+      path: "DONE.md"
+timeout: 180000

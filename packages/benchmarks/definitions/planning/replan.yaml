@@ -1,0 +1,24 @@
+id: planning/replan
+name: "Replanning"
+description: "Adapt plan when requirements change mid-task"
+difficulty: hard
+category: planning
+prompt:
+  - role: user
+    content: "Create app.py as a CLI that prints hello."
+  - role: user
+    content: "Change of plans: make it a JS file app.js instead, remove app.py if created."
+repository:
+  files: {}
+expected:
+  files:
+    - path: app.js
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "app.js"
+  - name: file-absent
+    params:
+      path: "app.py"
+timeout: 180000

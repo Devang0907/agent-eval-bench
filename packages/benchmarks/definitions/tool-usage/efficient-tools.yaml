@@ -1,0 +1,18 @@
+id: tool-usage/efficient-tools
+name: "Efficient Tool Use"
+description: "Complete with few tool calls"
+difficulty: medium
+category: tool-usage
+prompt: |
+  Create one.txt with "1".
+repository:
+  files: {}
+expected:
+  files:
+    - path: one.txt
+      exists: true
+validators:
+  - name: max-tool-calls
+    params:
+      max: 5
+timeout: 180000

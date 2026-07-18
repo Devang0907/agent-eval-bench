@@ -1,0 +1,25 @@
+id: long-horizon/multi-step
+name: "Multi-step Sequence"
+description: "Complete a sequence of related file tasks"
+difficulty: hard
+category: long-horizon
+prompt: |
+  Create files t01.txt through t10.txt each containing their number (e.g. t03.txt contains 3).
+repository:
+  files: {}
+expected:
+  files:
+    - path: t01.txt
+      contains: "1"
+    - path: t05.txt
+      contains: "5"
+    - path: t10.txt
+      contains: "10"
+validators:
+  - name: file-exists
+    params:
+      path: "t01.txt"
+  - name: file-exists
+    params:
+      path: "t10.txt"
+timeout: 180000

@@ -1,0 +1,20 @@
+id: long-horizon/resume-marker
+name: "Resume Marker"
+description: "Leave a marker that work can resume from"
+difficulty: medium
+category: long-horizon
+prompt: |
+  Create progress/state.json with {"step":1,"done":false} and work/item.txt with "started".
+repository:
+  files: {}
+expected:
+  files:
+    - path: progress/state.json
+      exists: true
+    - path: work/item.txt
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "progress/state.json"
+timeout: 180000

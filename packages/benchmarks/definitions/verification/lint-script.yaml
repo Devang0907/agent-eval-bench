@@ -1,0 +1,18 @@
+id: verification/lint-script
+name: "Run Lint"
+description: "Run lint and record result"
+difficulty: easy
+category: verification
+prompt: |
+  Run npm run lint and write the stdout to lint-out.txt.
+repository:
+  files:
+    "package.json": "{\"name\":\"lint-fixture\",\"scripts\":{\"lint\":\"echo lint-ok\"}}"
+expected:
+  files:
+    - path: lint-out.txt
+      exists: true
+      contains: "lint-ok"
+validators:
+  - name: lint-passes
+timeout: 180000

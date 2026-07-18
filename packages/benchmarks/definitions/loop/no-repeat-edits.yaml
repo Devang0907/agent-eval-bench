@@ -1,0 +1,22 @@
+id: loop/no-repeat-edits
+name: "Avoid Repeated Edits"
+description: "Should not loop on the same write"
+difficulty: medium
+category: loop
+prompt: |
+  Create once.txt with "once". Do not rewrite it repeatedly.
+repository:
+  files: {}
+expected:
+  files:
+    - path: once.txt
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "once.txt"
+  - name: no-loop-detected
+  - name: max-tool-calls
+    params:
+      max: 10
+timeout: 180000

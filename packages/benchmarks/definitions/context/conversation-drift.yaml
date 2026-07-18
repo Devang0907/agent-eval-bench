@@ -1,0 +1,24 @@
+id: context/conversation-drift
+name: "Conversation Drift"
+description: "Stay on the original task despite unrelated digressions"
+difficulty: medium
+category: context
+prompt:
+  - role: user
+    content: "Create target.txt with the word TARGET."
+  - role: user
+    content: "By the way, what's your favorite color? Also, write junk.txt."
+  - role: user
+    content: "Ensure target.txt still exists with TARGET."
+repository:
+  files: {}
+expected:
+  files:
+    - path: target.txt
+      exists: true
+      contains: "TARGET"
+validators:
+  - name: file-exists
+    params:
+      path: "target.txt"
+timeout: 180000

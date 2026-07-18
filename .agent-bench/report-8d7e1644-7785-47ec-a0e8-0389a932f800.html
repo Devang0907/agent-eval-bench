@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Agent Bench — mock</title>
+<style>
+  :root { --bg:#0f1419; --fg:#e7ecf3; --muted:#8b9bb4; --accent:#3d9cf0; --pass:#3ecf8e; --fail:#f07178; }
+  body { font-family: "Segoe UI", system-ui, sans-serif; background:var(--bg); color:var(--fg); margin:0; padding:2rem; }
+  h1 { font-weight:600; letter-spacing:-0.02em; }
+  .meta { color:var(--muted); margin-bottom:2rem; }
+  .card { background:#1a2332; border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; }
+  .row { display:grid; grid-template-columns:120px 1fr 48px; gap:0.75rem; align-items:center; margin:0.35rem 0; }
+  .bar { background:#243044; border-radius:999px; height:10px; overflow:hidden; }
+  .bar i { display:block; height:100%; background:linear-gradient(90deg,var(--accent),#7c5cff); }
+  table { width:100%; border-collapse:collapse; }
+  th,td { text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid #243044; }
+  .pass { color:var(--pass); font-weight:600; }
+  .fail { color:var(--fail); font-weight:600; }
+  ul { margin:0.5rem 0 0; padding-left:1.2rem; color:var(--muted); }
+</style>
+</head>
+<body>
+  <h1>Agent Bench</h1>
+  <p class="meta">mock · 8d7e1644-7785-47ec-a0e8-0389a932f800 · overall <strong>95.5</strong></p>
+  <div class="card"><h2>Score Card</h2><div class="row"><span>success</span><div class="bar"><i style="width:100%"></i></div><b>100.0</b></div>
+<div class="row"><span>accuracy</span><div class="bar"><i style="width:100%"></i></div><b>100.0</b></div>
+<div class="row"><span>planning</span><div class="bar"><i style="width:80%"></i></div><b>80.0</b></div>
+<div class="row"><span>efficiency</span><div class="bar"><i style="width:100%"></i></div><b>100.0</b></div>
+<div class="row"><span>verification</span><div class="bar"><i style="width:80%"></i></div><b>80.0</b></div>
+<div class="row"><span>recovery</span><div class="bar"><i style="width:100%"></i></div><b>100.0</b></div>
+<div class="row"><span>memory</span><div class="bar"><i style="width:90%"></i></div><b>90.0</b></div>
+<div class="row"><span>safety</span><div class="bar"><i style="width:100%"></i></div><b>100.0</b></div>
+<div class="row"><span>overall</span><div class="bar"><i style="width:95.5%"></i></div><b>95.5</b></div></div>
+  <div class="card"><h2>Strengths</h2><ul><li>filesystem (96)</li></ul></div>
+  <div class="card"><h2>Weaknesses</h2><ul><li>none</li></ul></div>
+  <div class="card"><h2>Results</h2>
+  <table><thead><tr><th>Benchmark</th><th>Category</th><th>Status</th><th>Score</th><th>Duration</th></tr></thead>
+  <tbody><tr><td>filesystem/create-hello</td><td>filesystem</td><td class="pass">PASS</td><td>95.5</td><td>947ms</td></tr>
+<tr><td>filesystem/hidden-file</td><td>filesystem</td><td class="pass">PASS</td><td>95.5</td><td>929ms</td></tr>
+<tr><td>filesystem/nested-path</td><td>filesystem</td><td class="pass">PASS</td><td>95.5</td><td>629ms</td></tr>
+<tr><td>filesystem/wrong-file-avoid</td><td>filesystem</td><td class="pass">PASS</td><td>95.5</td><td>517ms</td></tr></tbody></table></div>
+</body>
+</html>

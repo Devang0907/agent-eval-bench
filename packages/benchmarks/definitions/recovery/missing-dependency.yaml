@@ -1,0 +1,20 @@
+id: recovery/missing-dependency
+name: "Missing Dependency"
+description: "Handle missing package gracefully by creating local shim"
+difficulty: medium
+category: recovery
+prompt: |
+  index.js imports ./helper.js which is missing. Create helper.js exporting helper() returning "ok".
+repository:
+  files:
+    "index.js": "import { helper } from \"./helper.js\";\nconsole.log(helper());\n"
+expected:
+  files:
+    - path: helper.js
+      exists: true
+      contains: "helper"
+validators:
+  - name: file-exists
+    params:
+      path: "helper.js"
+timeout: 180000

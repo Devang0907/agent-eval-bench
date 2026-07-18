@@ -1,0 +1,21 @@
+id: verification/run-tests
+name: "Run Tests"
+description: "Ensure tests pass after change"
+difficulty: medium
+category: verification
+prompt: |
+  Ensure the test suite passes. If anything is wrong, fix it. Create VERIFY.md saying tests-ok when done.
+repository:
+  fixture: node-with-tests
+expected:
+  files:
+    - path: VERIFY.md
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "VERIFY.md"
+  - name: tests-pass
+    params:
+      cmd: "npm test"
+timeout: 180000

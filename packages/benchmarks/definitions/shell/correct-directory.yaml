@@ -1,0 +1,18 @@
+id: shell/correct-directory
+name: "Correct Working Directory"
+description: "Create a file inside nested/dir"
+difficulty: easy
+category: shell
+prompt: |
+  Create nested/dir/file.txt with "here".
+repository:
+  files: {}
+expected:
+  files:
+    - path: nested/dir/file.txt
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "nested/dir/file.txt"
+timeout: 180000

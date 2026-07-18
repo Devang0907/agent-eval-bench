@@ -1,0 +1,15 @@
+id: ambiguity/format-choice
+name: "Format Choice"
+description: "Clarify output format before writing"
+difficulty: easy
+category: ambiguity
+prompt: |
+  Export the user list.
+repository:
+  files: {}
+expected:
+  agentBehavior:
+    shouldAskQuestion: true
+validators:
+  - name: asks-clarification
+timeout: 180000

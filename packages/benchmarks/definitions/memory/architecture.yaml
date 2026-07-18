@@ -1,0 +1,19 @@
+id: memory/architecture
+name: "Architecture Memory"
+description: "Place code in the architecture-prescribed folder"
+difficulty: hard
+category: memory
+prompt: |
+  Read ARCHITECTURE.md and add a hello service accordingly.
+repository:
+  files:
+    "ARCHITECTURE.md": "All services live under src/services/.\n"
+expected:
+  files:
+    - path: src/services/hello.js
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "src/services/hello.js"
+timeout: 180000

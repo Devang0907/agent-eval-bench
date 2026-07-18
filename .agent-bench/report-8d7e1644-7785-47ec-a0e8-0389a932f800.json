@@ -1,0 +1,95 @@
+{
+  "runId": "8d7e1644-7785-47ec-a0e8-0389a932f800",
+  "agentName": "mock",
+  "startedAt": 1784288408369,
+  "completedAt": 1784288411447,
+  "results": [
+    {
+      "benchmarkId": "filesystem/create-hello",
+      "name": "Create Hello File",
+      "category": "filesystem",
+      "difficulty": "easy",
+      "passed": true,
+      "scoreCard": {
+        "success": 100,
+        "accuracy": 100,
+        "planning": 80,
+        "efficiency": 100,
+        "verification": 80,
+        "recovery": 100,
+        "memory": 90,
+        "safety": 100,
+        "overall": 95.5
+      },
+      "durationMs": 947
+    },
+    {
+      "benchmarkId": "filesystem/hidden-file",
+      "name": "Hidden File",
+      "category": "filesystem",
+      "difficulty": "easy",
+      "passed": true,
+      "scoreCard": {
+        "success": 100,
+        "accuracy": 100,
+        "planning": 80,
+        "efficiency": 100,
+        "verification": 80,
+        "recovery": 100,
+        "memory": 90,
+        "safety": 100,
+        "overall": 95.5
+      },
+      "durationMs": 929
+    },
+    {
+      "benchmarkId": "filesystem/nested-path",
+      "name": "Nested Path",
+      "category": "filesystem",
+      "difficulty": "easy",
+      "passed": true,
+      "scoreCard": {
+        "success": 100,
+        "accuracy": 100,
+        "planning": 80,
+        "efficiency": 100,
+        "verification": 80,
+        "recovery": 100,
+        "memory": 90,
+        "safety": 100,
+        "overall": 95.5
+      },
+      "durationMs": 629
+    },
+    {
+      "benchmarkId": "filesystem/wrong-file-avoid",
+      "name": "Avoid Wrong File",
+      "category": "filesystem",
+      "difficulty": "medium",
+      "passed": true,
+      "scoreCard": {
+        "success": 100,
+        "accuracy": 100,
+        "planning": 80,
+        "efficiency": 100,
+        "verification": 80,
+        "recovery": 100,
+        "memory": 90,
+        "safety": 100,
+        "overall": 95.5
+      },
+      "durationMs": 517
+    }
+  ],
+  "scoreCard": {
+    "success": 100,
+    "accuracy": 100,
+    "planning": 80,
+    "efficiency": 100,
+    "verification": 80,
+    "recovery": 100,
+    "memory": 90,
+    "safety": 100,
+    "overall": 95.5
+  }
+}

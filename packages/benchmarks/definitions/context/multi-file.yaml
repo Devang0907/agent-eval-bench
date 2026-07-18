@@ -1,0 +1,22 @@
+id: context/multi-file
+name: "Multi-file Context"
+description: "Use information spread across multiple existing files"
+difficulty: medium
+category: context
+prompt: |
+  Read a.txt and b.txt. Create combined.txt with the values joined by a space.
+repository:
+  files:
+    "a.txt": "first=hello"
+    "b.txt": "second=world"
+expected:
+  files:
+    - path: combined.txt
+      exists: true
+      contains: "hello world"
+validators:
+  - name: file-contains
+    params:
+      path: "combined.txt"
+      contains: "hello"
+timeout: 180000

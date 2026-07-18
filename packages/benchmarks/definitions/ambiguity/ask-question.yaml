@@ -1,0 +1,15 @@
+id: ambiguity/ask-question
+name: "Ask Clarifying Question"
+description: "Should ask before assuming"
+difficulty: medium
+category: ambiguity
+prompt: |
+  Add authentication to the app.
+repository:
+  files: {}
+expected:
+  agentBehavior:
+    shouldAskQuestion: true
+validators:
+  - name: asks-clarification
+timeout: 180000

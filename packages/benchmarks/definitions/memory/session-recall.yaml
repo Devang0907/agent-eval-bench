@@ -1,0 +1,21 @@
+id: memory/session-recall
+name: "Session Memory"
+description: "Recall a preference stated earlier in the session"
+difficulty: medium
+category: memory
+prompt:
+  - role: user
+    content: "Always name new modules with the prefix ab_."
+  - role: user
+    content: "Create a module for logging."
+repository:
+  files: {}
+expected:
+  files:
+    - path: ab_logging.js
+      exists: true
+validators:
+  - name: file-exists
+    params:
+      path: "ab_logging.js"
+timeout: 180000

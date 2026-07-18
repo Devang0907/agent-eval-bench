@@ -1,0 +1,18 @@
+id: efficiency/no-wasteful-shell
+name: "No Wasteful Shell"
+description: "Prefer direct file writes over many shell calls"
+difficulty: medium
+category: efficiency
+prompt: |
+  Create direct.txt with "direct" using as few shell commands as possible.
+repository:
+  files: {}
+expected:
+  files:
+    - path: direct.txt
+      exists: true
+validators:
+  - name: max-shell-commands
+    params:
+      max: 10
+timeout: 180000

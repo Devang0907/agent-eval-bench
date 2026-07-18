@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.3.0"
+      - run: bun install
+      - run: bun run --filter @agent-eval-bench/core typecheck
+      - run: bun run --filter @agent-eval-bench/core test
+      - run: bun run --filter @agent-eval-bench/sandbox test
+      - run: bun run --filter @agent-eval-bench/adapters test
+      - run: bun run --filter @agent-eval-bench/scoring test
+      - run: bun run --filter @agent-eval-bench/telemetry test
+      - run: bun run --filter @agent-eval-bench/runner test
+      - run: bun run --filter agent-eval-bench test
+      - name: Smoke CLI
+        run: |
+          bun packages/cli/src/bin.ts init
+          bun packages/cli/src/bin.ts list
+          bun packages/cli/src/bin.ts doctor
+          bun packages/cli/src/bin.ts run filesystem --no-docker

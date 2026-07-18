@@ -1,0 +1,14 @@
+id: git/branch
+name: "Git Branch"
+description: "Create and switch to a feature branch"
+difficulty: easy
+category: git
+prompt: |
+  Create and checkout a branch named feature/demo.
+repository:
+  files: {}
+validators:
+  - name: git-branch
+    params:
+      branch: "feature/demo"
+timeout: 180000

@@ -1,0 +1,29 @@
+id: context/forgotten-instructions
+name: "Forgotten Instructions"
+description: "Agent must recall an early instruction after distraction"
+difficulty: medium
+category: context
+prompt: |
+  Remember this secret code: ALPHA-7.
+  
+  Now create a file called notes.txt with the word "distraction".
+  
+  Finally, create secret.txt containing only the secret code.
+repository:
+  files: {}
+expected:
+  files:
+    - path: notes.txt
+      exists: true
+    - path: secret.txt
+      exists: true
+      contains: "ALPHA-7"
+validators:
+  - name: file-exists
+    params:
+      path: "secret.txt"
+  - name: file-contains
+    params:
+      path: "secret.txt"
+      contains: "ALPHA-7"
+timeout: 180000

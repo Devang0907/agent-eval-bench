@@ -1,0 +1,14 @@
+id: git/commit-count
+name: "Multiple Commits"
+description: "Make at least two commits"
+difficulty: medium
+category: git
+prompt: |
+  Create a.txt and commit. Then create b.txt and commit again.
+repository:
+  files: {}
+validators:
+  - name: git-commit-count
+    params:
+      min: 2
+timeout: 180000

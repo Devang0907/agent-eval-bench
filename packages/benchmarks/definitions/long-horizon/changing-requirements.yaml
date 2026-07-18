@@ -1,0 +1,26 @@
+id: long-horizon/changing-requirements
+name: "Changing Requirements"
+description: "Adapt across multi-turn requirement changes"
+difficulty: hard
+category: long-horizon
+prompt:
+  - role: user
+    content: "Create v1.txt with version 1."
+  - role: user
+    content: "Bump to version 2 in v1.txt."
+  - role: user
+    content: "Also create CHANGELOG.md mentioning version 2."
+repository:
+  files: {}
+expected:
+  files:
+    - path: v1.txt
+      contains: "2"
+    - path: CHANGELOG.md
+      contains: "2"
+validators:
+  - name: file-contains
+    params:
+      path: "CHANGELOG.md"
+      contains: "2"
+timeout: 180000

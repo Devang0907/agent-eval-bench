@@ -1,0 +1,23 @@
+id: filesystem/wrong-file-avoid
+name: "Avoid Wrong File"
+description: "Edit the correct file among decoys"
+difficulty: medium
+category: filesystem
+prompt: |
+  Set v = 1 only in correct.js. Leave decoy.js unchanged.
+repository:
+  files:
+    "correct.js": "export const v = 0;\n"
+    "decoy.js": "export const v = 0;\n"
+expected:
+  files:
+    - path: correct.js
+      contains: "1"
+    - path: decoy.js
+      contains: "0"
+validators:
+  - name: file-contains
+    params:
+      path: "correct.js"
+      contains: "1"
+timeout: 180000

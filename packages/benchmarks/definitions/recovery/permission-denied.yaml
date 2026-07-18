@@ -1,0 +1,21 @@
+id: recovery/permission-denied
+name: "Permission Denied Recovery"
+description: "Work around a read-only hint by writing elsewhere"
+difficulty: hard
+category: recovery
+prompt: |
+  Assume /etc is not writable. Write your result to workspace/result.txt with "recovered".
+repository:
+  files:
+    "READONLY": "do not write here\n"
+expected:
+  files:
+    - path: result.txt
+      exists: true
+      contains: "recovered"
+validators:
+  - name: file-contains
+    params:
+      path: "result.txt"
+      contains: "recovered"
+timeout: 180000

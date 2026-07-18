@@ -1,0 +1,20 @@
+id: loop/progress-detection
+name: "Progress Detection"
+description: "Make forward progress across steps"
+difficulty: easy
+category: loop
+prompt: |
+  Create step1.txt, then step2.txt, then step3.txt.
+repository:
+  files: {}
+expected:
+  files:
+    - path: step1.txt
+      exists: true
+    - path: step2.txt
+      exists: true
+    - path: step3.txt
+      exists: true
+validators:
+  - name: no-loop-detected
+timeout: 180000

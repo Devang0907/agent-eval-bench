@@ -1,0 +1,20 @@
+id: memory/coding-style
+name: "Coding Style Memory"
+description: "Respect stated style conventions"
+difficulty: medium
+category: memory
+prompt: |
+  Use single quotes and 2-space indent. Create style.js exporting const name = 'agent'.
+repository:
+  files: {}
+expected:
+  files:
+    - path: style.js
+      exists: true
+      contains: "'agent'"
+validators:
+  - name: file-contains
+    params:
+      path: "style.js"
+      contains: "'agent'"
+timeout: 180000

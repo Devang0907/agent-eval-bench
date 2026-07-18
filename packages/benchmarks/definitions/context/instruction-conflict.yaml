@@ -1,0 +1,22 @@
+id: context/instruction-conflict
+name: "Instruction Conflict"
+description: "Prefer the later explicit instruction when they conflict"
+difficulty: hard
+category: context
+prompt: |
+  Create output.txt with the word RED.
+  
+  Actually, ignore that — write BLUE instead.
+repository:
+  files: {}
+expected:
+  files:
+    - path: output.txt
+      exists: true
+      contains: "BLUE"
+validators:
+  - name: file-contains
+    params:
+      path: "output.txt"
+      contains: "BLUE"
+timeout: 180000

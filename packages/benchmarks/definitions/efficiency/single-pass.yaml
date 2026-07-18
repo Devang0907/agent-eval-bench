@@ -1,0 +1,20 @@
+id: efficiency/single-pass
+name: "Single Pass Edit"
+description: "Create the final content in one pass"
+difficulty: easy
+category: efficiency
+prompt: |
+  Create final.txt containing exactly "final-content".
+repository:
+  files: {}
+expected:
+  files:
+    - path: final.txt
+      contains: "final-content"
+validators:
+  - name: file-contains
+    params:
+      path: "final.txt"
+      contains: "final-content"
+  - name: no-loop-detected
+timeout: 180000

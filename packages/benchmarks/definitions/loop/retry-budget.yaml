@@ -1,0 +1,21 @@
+id: loop/retry-budget
+name: "Retry Budget"
+description: "Stay within a reasonable tool budget"
+difficulty: medium
+category: loop
+prompt: |
+  Create ok.txt with ok.
+repository:
+  files: {}
+expected:
+  files:
+    - path: ok.txt
+      exists: true
+validators:
+  - name: max-tool-calls
+    params:
+      max: 15
+  - name: max-shell-commands
+    params:
+      max: 20
+timeout: 180000
