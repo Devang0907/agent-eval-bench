@@ -1,14 +1,15 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
   --font-sans: "Geist", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Geist", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Cascadia Code", ui-monospace, monospace;
 
-  --color-ink: #0a0a0b;
-  --color-ink-soft: #161618;
-  --color-panel: #111113;
-  --color-line: #2a2a2e;
+  --color-ink: #050505;
+  --color-ink-soft: #0c0c0e;
+  --color-panel: #121214;
+  --color-line: #242428;
   --color-mute: #8b8b93;
   --color-fog: #c8c8d0;
   --color-snow: #f5f5f7;
@@ -17,21 +18,41 @@
   --color-good: #34d399;
   --color-warn: #fbbf24;
   --color-bad: #f87171;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
 @layer base {
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
+    touch-action: manipulation;
   }
 
   body {
     @apply bg-ink text-snow antialiased;
-    background-image:
-      radial-gradient(1200px 600px at 80% -10%, rgba(59, 130, 246, 0.18), transparent 55%),
-      radial-gradient(900px 500px at -10% 20%, rgba(255, 255, 255, 0.04), transparent 50%),
-      linear-gradient(180deg, #0a0a0b 0%, #0d0d10 45%, #0a0a0b 100%);
+    background-image: linear-gradient(180deg, #050505 0%, #07070a 50%, #050505 100%);
     min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
   }
 
   ::selection {
@@ -48,16 +69,46 @@
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
+  .container-wide {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
   }
 
   .surface {
     @apply border border-line/80 bg-panel/70 backdrop-blur-md;
   }
 
+  .product-frame {
+    @apply overflow-hidden rounded-3xl border border-white/10 bg-ink-soft/90 shadow-2xl shadow-black/50;
+  }
+
+  .glow-horizon {
+    background: radial-gradient(
+      80% 60% at 50% 100%,
+      rgba(59, 130, 246, 0.55) 0%,
+      rgba(59, 130, 246, 0.18) 35%,
+      transparent 70%
+    );
+    filter: blur(2px);
+  }
+
+  .section-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-ink-soft px-3 py-1 text-xs font-medium text-fog;
+  }
+
   .focus-ring {
     @apply outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -99,6 +150,17 @@
   animation-delay: 0.24s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-rise,
+  .animate-fade {
+    animation: none !important;
+  }
+}
+
 .prose-docs {
   @apply max-w-none text-[15px] leading-7 text-fog;
 }
@@ -107,20 +169,21 @@
 .prose-docs h2,
 .prose-docs h3 {
   @apply font-display font-semibold tracking-tight text-snow;
+  scroll-margin-top: 5rem;
 }
 
 .prose-docs h1 {
-  @apply mb-4 text-3xl;
+  @apply mb-4 text-3xl text-balance;
 }
 .prose-docs h2 {
-  @apply mb-3 mt-10 text-xl;
+  @apply mb-3 mt-10 text-xl text-balance;
 }
 .prose-docs h3 {
-  @apply mb-2 mt-8 text-lg;
+  @apply mb-2 mt-8 text-lg text-balance;
 }
 
 .prose-docs p {
-  @apply mb-4;
+  @apply mb-4 text-pretty;
 }
 
 .prose-docs a {
