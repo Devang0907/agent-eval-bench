@@ -25,6 +25,14 @@ function GitHubIcon({ className }: { className?: string }) {
   );
 }
 
+function NpmIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M4 4h16v16H4V4Zm3.2 3.2v9.6h4.8V9.6h3.2v7.2h3.2V7.2H7.2Z" />
+    </svg>
+  );
+}
+
 const links = [
   { href: "/#product", label: "Product" },
   { href: "/#how-it-works", label: "How it Works" },
@@ -116,6 +124,15 @@ export function SiteHeader() {
                   GitHub
                 </a>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a
+                  href="https://www.npmjs.com/package/agent-eval-bench"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  npm
+                </a>
+              </DropdownMenuItem>
               {!session?.user ? (
                 <DropdownMenuItem asChild>
                   <Link href="/login">Log in</Link>
@@ -132,6 +149,15 @@ export function SiteHeader() {
           >
             <GitHubIcon className="size-4" />
             GitHub
+          </a>
+          <a
+            href="https://www.npmjs.com/package/agent-eval-bench"
+            target="_blank"
+            rel="noreferrer"
+            className="focus-ring hidden items-center gap-1.5 rounded-full px-2 py-1 text-sm text-fog hover:text-snow sm:inline-flex"
+          >
+            <NpmIcon className="size-4" />
+            npm
           </a>
           {session?.user ? (
             <MotionButton asChild size="sm">
