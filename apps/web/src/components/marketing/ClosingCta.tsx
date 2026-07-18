@@ -5,10 +5,14 @@ export function ClosingCta() {
   return (
     <section className="pb-24 pt-8">
       <div className="container-wide">
-        <div className="relative overflow-hidden rounded-[2rem] border border-line bg-ink-soft px-6 py-16 text-center sm:px-12 sm:py-20">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 glow-horizon opacity-80" />
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0a0e14] px-6 py-16 text-center sm:px-12 sm:py-20">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-48" aria-hidden="true">
+            <div className="hero-horizon-bloom opacity-70" />
+            <div className="hero-horizon-arc !bottom-auto !top-0 h-40 opacity-60" />
+          </div>
+          <div className="hero-grain pointer-events-none absolute inset-0 opacity-20" aria-hidden="true" />
           <div className="relative z-10">
-            <h2 className="mx-auto max-w-2xl text-balance font-display text-3xl font-semibold tracking-tight text-snow sm:text-5xl">
+            <h2 className="mx-auto max-w-2xl text-balance font-display text-3xl font-semibold tracking-[-0.03em] text-snow sm:text-5xl">
               Ship your next eval with confidence
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-mute">

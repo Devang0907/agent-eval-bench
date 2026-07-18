@@ -77,7 +77,7 @@ export function FeatureBento() {
       <div className="container-wide">
         <div className="mx-auto max-w-2xl text-center">
           <span className="section-badge">Features</span>
-          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-tight text-snow sm:text-4xl">
+          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-[-0.03em] text-snow sm:text-4xl">
             Everything you need to evaluate and launch
           </h2>
           <p className="mt-4 text-pretty text-mute">

@@ -2,19 +2,19 @@
 @import "tw-animate-css";
 
 @theme {
-  --font-sans: "Geist", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Geist", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Cascadia Code", ui-monospace, monospace;
+  --font-sans: var(--font-jakarta), "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-syne), var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "Cascadia Code", ui-monospace, monospace;
 
-  --color-ink: #050505;
-  --color-ink-soft: #0c0c0e;
-  --color-panel: #121214;
-  --color-line: #242428;
-  --color-mute: #8b8b93;
-  --color-fog: #c8c8d0;
-  --color-snow: #f5f5f7;
-  --color-accent: #3b82f6;
-  --color-accent-soft: #60a5fa;
+  --color-ink: #05070a;
+  --color-ink-soft: #0a0e14;
+  --color-panel: #10151c;
+  --color-line: #232a35;
+  --color-mute: #8b93a0;
+  --color-fog: #c5ccd6;
+  --color-snow: #f5f7fa;
+  --color-accent: #3b9eff;
+  --color-accent-soft: #6ec0ff;
   --color-good: #34d399;
   --color-warn: #fbbf24;
   --color-bad: #f87171;
@@ -50,7 +50,12 @@
 
   body {
     @apply bg-ink text-snow antialiased;
-    background-image: linear-gradient(180deg, #050505 0%, #07070a 50%, #050505 100%);
+    background-color: #05070a;
+    background-image:
+      radial-gradient(120% 80% at 50% -10%, rgba(56, 100, 180, 0.22), transparent 55%),
+      radial-gradient(80% 50% at 80% 20%, rgba(30, 60, 120, 0.12), transparent 50%),
+      radial-gradient(70% 40% at 15% 30%, rgba(20, 50, 100, 0.1), transparent 45%),
+      linear-gradient(180deg, #070b12 0%, #05070a 40%, #040508 100%);
     min-height: 100vh;
     -webkit-tap-highlight-color: transparent;
   }
@@ -86,17 +91,163 @@
   }
 
   .product-frame {
-    @apply overflow-hidden rounded-3xl border border-white/10 bg-ink-soft/90 shadow-2xl shadow-black/50;
+    @apply relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0e14]/92 shadow-2xl shadow-black/60 backdrop-blur-sm;
+  }
+
+  .product-frame-glow {
+    filter: drop-shadow(0 0 40px rgba(80, 170, 255, 0.18));
+  }
+
+  /* —— Hero atmosphere (Codable-style) —— */
+  .hero-mesh {
+    background:
+      radial-gradient(90% 70% at 50% 0%, rgba(40, 80, 160, 0.28) 0%, transparent 60%),
+      radial-gradient(60% 50% at 20% 40%, rgba(20, 50, 110, 0.18) 0%, transparent 55%),
+      radial-gradient(55% 45% at 85% 35%, rgba(30, 70, 140, 0.16) 0%, transparent 50%),
+      radial-gradient(100% 80% at 50% 100%, rgba(8, 20, 50, 0.9) 0%, transparent 55%),
+      #05070a;
+  }
+
+  .hero-top-light {
+    background: radial-gradient(
+      70% 100% at 50% 0%,
+      rgba(120, 160, 220, 0.14) 0%,
+      rgba(60, 100, 180, 0.06) 40%,
+      transparent 70%
+    );
+  }
+
+  .hero-watermark {
+    font-size: clamp(7rem, 30vw, 24rem);
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+    opacity: 0.055;
+    mix-blend-mode: soft-light;
+    white-space: nowrap;
+    mask-image: linear-gradient(180deg, black 15%, transparent 88%);
+  }
+
+  /* Planetary half-circle — only the upper crescent is visible */
+  .hero-half-circle {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: min(1400px, 155vw);
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+  }
+
+  .hero-half-circle--product {
+    top: -8%;
+  }
+
+  .hero-half-circle-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 50% 38%,
+      rgba(240, 250, 255, 0.7) 0%,
+      rgba(130, 210, 255, 0.5) 10%,
+      rgba(60, 150, 255, 0.32) 24%,
+      rgba(25, 80, 180, 0.14) 42%,
+      transparent 58%
+    );
+    filter: blur(1px);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 54%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 54%);
+  }
+
+  .hero-half-circle-rim {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    width: 72%;
+    height: 72%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1.5px rgba(200, 235, 255, 0.35),
+      0 -2px 24px 2px rgba(170, 230, 255, 0.55),
+      0 -18px 70px 10px rgba(70, 170, 255, 0.4),
+      0 -40px 120px 30px rgba(40, 130, 255, 0.22);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 56%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 56%);
+  }
+
+  .hero-half-circle-hot {
+    position: absolute;
+    left: 50%;
+    top: 42.5%;
+    width: min(640px, 52%);
+    height: 3px;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(170, 225, 255, 0.45) 16%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(170, 225, 255, 0.45) 84%,
+      transparent 100%
+    );
+    box-shadow:
+      0 0 16px 4px rgba(200, 240, 255, 0.9),
+      0 0 48px 14px rgba(90, 185, 255, 0.55),
+      0 0 100px 36px rgba(45, 140, 255, 0.3),
+      0 -28px 60px 12px rgba(50, 140, 255, 0.18);
+  }
+
+  /* Used by closing CTA and other sections */
+  .hero-horizon-bloom {
+    position: absolute;
+    inset: auto -15% 12% -15%;
+    height: 85%;
+    background: radial-gradient(
+      50% 65% at 50% 85%,
+      rgba(110, 200, 255, 0.55) 0%,
+      rgba(50, 140, 255, 0.28) 28%,
+      transparent 70%
+    );
+    filter: blur(10px);
+  }
+
+  .hero-horizon-arc {
+    position: absolute;
+    left: 50%;
+    bottom: 28%;
+    width: min(1200px, 130%);
+    height: 260px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      55% 100% at 50% 100%,
+      rgba(210, 240, 255, 0.9) 0%,
+      rgba(100, 200, 255, 0.55) 20%,
+      transparent 65%
+    );
+    filter: blur(18px);
+  }
+
+  .hero-grain {
+    opacity: 0.28;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+  }
+
+  .hero-vignette {
+    background: linear-gradient(180deg, transparent 0%, #05070a 100%);
   }
 
   .glow-horizon {
     background: radial-gradient(
-      80% 60% at 50% 100%,
-      rgba(59, 130, 246, 0.55) 0%,
-      rgba(59, 130, 246, 0.18) 35%,
+      70% 80% at 50% 100%,
+      rgba(90, 180, 255, 0.5) 0%,
+      rgba(40, 120, 255, 0.22) 35%,
       transparent 70%
     );
-    filter: blur(2px);
+    filter: blur(6px);
   }
 
   .section-badge {
@@ -158,6 +309,15 @@
   .animate-rise,
   .animate-fade {
     animation: none !important;
+  }
+
+  .site-header,
+  .site-header-shell {
+    transition: none !important;
+  }
+
+  .hero-grain {
+    opacity: 0.12;
   }
 }
 

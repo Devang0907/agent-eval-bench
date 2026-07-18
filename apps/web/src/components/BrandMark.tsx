@@ -30,7 +30,7 @@ export function BrandMark({
         />
       </svg>
       {showWordmark ? (
-        <span className="font-display text-[15px] font-semibold tracking-tight text-snow">
+        <span className="font-display text-[15px] font-semibold tracking-[-0.02em] text-snow">
           Agent Eval Bench
         </span>
       ) : null}

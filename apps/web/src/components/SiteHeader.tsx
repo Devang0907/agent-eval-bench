@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSession } from "@/lib/auth-client";
+import { cn } from "@/lib/utils";
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -30,17 +32,50 @@ const links = [
 
 export function SiteHeader() {
   const { data: session } = useSession();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="animate-fade sticky top-0 z-40 border-b border-line/50 bg-ink/75 backdrop-blur-xl">
-      <div className="container-wide flex h-14 items-center justify-between gap-4">
+    <header
+      className={cn(
+        "site-header sticky top-0 z-40 flex justify-center px-3 sm:px-4",
+        "transition-[padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        scrolled ? "pt-3 pb-1" : "pt-0 pb-0",
+      )}
+    >
+      <div
+        className={cn(
+          "site-header-shell relative flex h-14 w-full items-center justify-between gap-3",
+          "transition-[max-width,border-radius,background-color,border-color,box-shadow,padding,transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          scrolled
+            ? "max-w-5xl translate-y-0 rounded-full border border-white/10 bg-ink/75 px-4 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.75)] backdrop-blur-xl sm:px-5"
+            : "max-w-7xl rounded-none border border-transparent bg-transparent px-5 sm:px-8",
+        )}
+      >
         <Link href="/" className="focus-ring shrink-0 rounded-lg">
-          <BrandMark />
+          <BrandMark
+            className={cn(
+              "transition-[gap] duration-300",
+              scrolled && "gap-1.5 [&_span]:text-[13px] sm:[&_span]:text-[15px]",
+            )}
+          />
         </Link>
 
         <nav
           aria-label="Primary"
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-sm text-mute lg:flex"
+          className={cn(
+            "absolute left-1/2 hidden -translate-x-1/2 items-center text-sm text-mute lg:flex",
+            "transition-[gap] duration-300",
+            scrolled ? "gap-4" : "gap-6",
+          )}
         >
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="hover:text-snow">

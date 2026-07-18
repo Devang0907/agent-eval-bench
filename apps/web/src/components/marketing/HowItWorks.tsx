@@ -22,7 +22,7 @@ export function HowItWorks() {
       <div className="container-wide">
         <div className="mx-auto max-w-2xl text-center">
           <span className="section-badge">How it Works</span>
-          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-tight text-snow sm:text-4xl">
+          <h2 className="mt-5 text-balance font-display text-3xl font-semibold tracking-[-0.03em] text-snow sm:text-4xl">
             From local eval to cloud visibility in minutes
           </h2>
           <p className="mt-4 text-pretty text-mute">
