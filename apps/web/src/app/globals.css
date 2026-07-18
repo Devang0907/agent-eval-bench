@@ -94,6 +94,7 @@
   }
 
   .product-frame--glass {
+    overflow: visible;
     border: 1px solid rgba(140, 220, 255, 0.4);
     background: #0a0e14;
     box-shadow:

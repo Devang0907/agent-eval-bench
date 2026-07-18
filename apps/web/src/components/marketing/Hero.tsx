@@ -13,7 +13,7 @@ export function Hero() {
   const m = motionSafe(reduced);
 
   return (
-    <section className="relative isolate min-h-[100svh] overflow-hidden pb-16 -mt-14 pt-28 sm:pb-20 sm:pt-36 lg:pt-40">
+    <section className="relative isolate min-h-[100svh] overflow-hidden pb-16 -mt-14 pt-24 sm:pb-20 sm:pt-28">
       <HeroBackdrop />
 
       <motion.div
@@ -29,17 +29,21 @@ export function Hero() {
           Measure coding agents like production software
         </motion.h1>
         <motion.p
-          className="mx-auto mt-8 max-w-xl text-pretty font-sans text-sm font-normal leading-7 tracking-[-0.01em] text-mute sm:mt-10 sm:max-w-2xl sm:text-[15px] sm:leading-8"
+          className="mx-auto mt-6 max-w-xl text-pretty font-sans text-sm font-normal leading-7 tracking-[-0.01em] text-mute sm:mt-7 sm:max-w-2xl sm:text-[15px] sm:leading-8"
           variants={m.fadeUp}
         >
           Sandboxed benchmarks, nine-dimension scorecards, and a cloud dashboard for every run —
           from local CLI to shared leaderboards in minutes.
         </motion.p>
         <motion.div
-          className="mt-12 flex flex-wrap items-center justify-center gap-3 sm:mt-14 sm:gap-4"
+          className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 sm:gap-4"
           variants={m.fadeUp}
         >
-          <MotionButton asChild size="default" className="h-10 px-5 text-[13px] font-medium tracking-[-0.01em]">
+          <MotionButton
+            asChild
+            size="default"
+            className="h-10 px-5 text-[13px] font-medium tracking-[-0.01em]"
+          >
             <Link href="/signup">Start Building Free</Link>
           </MotionButton>
           <MotionButton
@@ -56,8 +60,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Curve crest sits above dashboard; product frame occludes the lower arc */}
-      <div className="hero-product relative z-10 mt-20 sm:mt-28 lg:mt-32">
+      <div className="hero-product relative z-10 mt-14 sm:mt-16">
         <HeroCurve />
         <motion.div
           className="relative z-[2] mx-auto w-full max-w-[88rem] px-3 sm:px-6 lg:px-8"

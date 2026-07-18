@@ -190,7 +190,7 @@ function OverviewPanel() {
         </div>
         <ul className="divide-y divide-white/[0.06] overflow-auto">
           {runs.slice(0, 4).map((run) => (
-            <li key={run.id} className="flex items-center justify-between gap-3 py-3 text-sm">
+            <li key={run.id} className="flex items-center justify-between gap-3 py-2.5 text-sm">
               <span className="min-w-0 truncate font-medium text-snow">{run.agent}</span>
               <span className="hidden font-mono text-xs text-mute sm:inline">{run.id}</span>
               <Badge variant={run.status === "running" ? "warn" : "good"} showDot>
@@ -437,7 +437,7 @@ export function ProductPreview() {
         </div>
 
         {/* Floating command panel */}
-        <div className="absolute inset-x-4 bottom-[31px] z-10 sm:inset-x-8 sm:bottom-[35px]">
+        <div className="absolute inset-x-4 -bottom-[30px] z-10 sm:inset-x-8 sm:-bottom-[30px]">
           <div
             className={cn(
               "overflow-hidden rounded-2xl border border-cyan-300/35 bg-[#0a0e14]/75 shadow-[0_0_0_1px_rgba(120,210,255,0.12),0_20px_60px_-20px_rgba(0,0,0,0.8),0_0_40px_-12px_rgba(80,180,255,0.35)] backdrop-blur-xl transition-[height] duration-300",
