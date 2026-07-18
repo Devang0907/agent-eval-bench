@@ -32,10 +32,6 @@ export function ClosingCta() {
           <h2 className="mx-auto max-w-3xl text-balance font-display text-3xl font-semibold tracking-[-0.035em] text-snow sm:text-5xl md:text-6xl">
             Turn your next idea into a measured agent
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-pretty text-mute sm:text-lg">
-            Describe the suite, run it locally, and launch results to a shared dashboard —
-            instantly.
-          </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <MotionButton asChild size="lg">
               <Link href="/signup">Start Building Free</Link>
