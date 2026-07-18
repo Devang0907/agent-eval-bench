@@ -1,0 +1,27 @@
+{
+  "name": "@agent-eval-bench/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@agent-eval-bench/core": "workspace:*",
+    "@prisma/client": "^6.5.0",
+    "better-auth": "^1.2.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^6.5.0",
+    "typescript": "^5.7.3"
+  }
+}

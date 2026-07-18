@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+  apiTokens     ApiToken[]
+  deviceCodes   DeviceCode[]
+  runs          Run[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verification")
+}
+
+model ApiToken {
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name       String
+  tokenHash  String
+  tokenPrefix String
+  lastUsedAt DateTime?
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([userId])
+  @@index([tokenHash])
+  @@map("api_token")
+}
+
+model DeviceCode {
+  id           String    @id @default(cuid())
+  deviceCode   String    @unique
+  userCode     String    @unique
+  expiresAt    DateTime
+  interval     Int       @default(5)
+  userId       String?
+  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  approvedAt   DateTime?
+  consumedAt   DateTime?
+  createdAt    DateTime  @default(now())
+
+  @@index([userCode])
+  @@map("device_code")
+}
+
+model Run {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientRunId  String
+  agentName    String
+  agentVersion String?
+  status       String
+  scoreCard    Json
+  metrics      Json
+  startedAt    DateTime
+  completedAt  DateTime
+  raw          Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  benchmarks BenchmarkResult[]
+  events     TelemetryEvent[]
+
+  @@unique([userId, clientRunId])
+  @@index([userId, createdAt])
+  @@index([agentName])
+  @@map("run")
+}
+
+model BenchmarkResult {
+  id               String  @id @default(cuid())
+  runId            String
+  run              Run     @relation(fields: [runId], references: [id], onDelete: Cascade)
+  benchmarkId      String
+  name             String
+  category         String
+  difficulty       String
+  agentName        String
+  passed           Boolean
+  skipped          Boolean @default(false)
+  skipReason       String?
+  scoreCard        Json
+  metrics          Json
+  durationMs       Int
+  error            String?
+  validatorResults Json
+
+  @@index([runId])
+  @@index([benchmarkId])
+  @@index([category])
+  @@map("benchmark_result")
+}
+
+model TelemetryEvent {
+  id          String   @id @default(cuid())
+  runId       String
+  run         Run      @relation(fields: [runId], references: [id], onDelete: Cascade)
+  clientEventId String
+  seq         Int
+  type        String
+  timestamp   DateTime
+  benchmarkId String?
+  agentName   String?
+  payload     Json
+  durationMs  Int?
+
+  @@unique([runId, clientEventId])
+  @@index([runId, seq])
+  @@index([runId, type])
+  @@map("telemetry_event")
+}

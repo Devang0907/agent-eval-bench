@@ -1,0 +1,47 @@
+---
+title: Cloud sync
+description: Link your terminal to the dashboard with device-code login.
+order: 6
+---
+
+Cloud sync uploads local run results and telemetry so you can inspect them in the web dashboard.
+
+## 1. Create an account
+
+Sign up at [/signup](/signup) with email/password or Google.
+
+## 2. Link the CLI
+
+```bash
+agent-eval-bench login
+```
+
+The CLI prints a URL and a short user code. Open the URL (or visit [/device](/device)), sign in, and approve the code. Credentials are stored in `~/.agent-eval-bench/credentials.json`.
+
+```bash
+agent-eval-bench whoami
+agent-eval-bench logout
+```
+
+## 3. Sync runs
+
+After login, completed runs sync automatically. You can also force sync:
+
+```bash
+agent-eval-bench run --sync
+```
+
+Point at a custom API:
+
+```bash
+set AGENT_EVAL_BENCH_API_URL=http://localhost:4000
+```
+
+## Dashboard
+
+- **Overview** — recent runs and averages
+- **Runs** — scorecards, per-benchmark tables, telemetry logs
+- **Leaderboard** — agent comparisons from synced data
+- **Settings** — API tokens and device linking
+
+Local eval packages never depend on the website. Installing `agent-eval-bench` from npm does not download `apps/web` or `apps/api`.

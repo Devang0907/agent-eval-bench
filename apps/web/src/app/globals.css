@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Cascadia Code", ui-monospace, monospace;
+
+  --color-ink: #0a0a0b;
+  --color-ink-soft: #161618;
+  --color-panel: #111113;
+  --color-line: #2a2a2e;
+  --color-mute: #8b8b93;
+  --color-fog: #c8c8d0;
+  --color-snow: #f5f5f7;
+  --color-accent: #3b82f6;
+  --color-accent-soft: #60a5fa;
+  --color-good: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink text-snow antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 80% -10%, rgba(59, 130, 246, 0.18), transparent 55%),
+      radial-gradient(900px 500px at -10% 20%, rgba(255, 255, 255, 0.04), transparent 50%),
+      linear-gradient(180deg, #0a0a0b 0%, #0d0d10 45%, #0a0a0b 100%);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .surface {
+    @apply border border-line/80 bg-panel/70 backdrop-blur-md;
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade {
+  animation: fade-in 0.8s ease both;
+}
+
+.delay-1 {
+  animation-delay: 0.08s;
+}
+.delay-2 {
+  animation-delay: 0.16s;
+}
+.delay-3 {
+  animation-delay: 0.24s;
+}
+
+.prose-docs {
+  @apply max-w-none text-[15px] leading-7 text-fog;
+}
+
+.prose-docs h1,
+.prose-docs h2,
+.prose-docs h3 {
+  @apply font-display font-semibold tracking-tight text-snow;
+}
+
+.prose-docs h1 {
+  @apply mb-4 text-3xl;
+}
+.prose-docs h2 {
+  @apply mb-3 mt-10 text-xl;
+}
+.prose-docs h3 {
+  @apply mb-2 mt-8 text-lg;
+}
+
+.prose-docs p {
+  @apply mb-4;
+}
+
+.prose-docs a {
+  @apply text-accent-soft underline underline-offset-4 hover:text-snow;
+}
+
+.prose-docs ul {
+  @apply mb-4 list-disc space-y-1 pl-5;
+}
+
+.prose-docs ol {
+  @apply mb-4 list-decimal space-y-1 pl-5;
+}
+
+.prose-docs code {
+  @apply rounded bg-ink-soft px-1.5 py-0.5 font-mono text-[13px] text-snow;
+}
+
+.prose-docs pre {
+  @apply mb-6 overflow-x-auto rounded-xl border border-line bg-ink-soft p-4;
+}
+
+.prose-docs pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose-docs table {
+  @apply mb-6 w-full border-collapse text-left text-sm;
+}
+
+.prose-docs th,
+.prose-docs td {
+  @apply border-b border-line px-3 py-2;
+}
+
+.prose-docs th {
+  @apply text-mute;
+}

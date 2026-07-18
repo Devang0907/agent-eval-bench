@@ -1,0 +1,32 @@
+---
+title: CLI
+description: Commands for init, run, report, compare, and cloud login.
+order: 2
+---
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `init` | Create `agent-eval-bench.config.ts` |
+| `doctor` | Check Docker, Git, Bun, adapters |
+| `list` | List available benchmarks |
+| `run [suite]` | Run benchmarks (optional filter) |
+| `benchmark` | Run the official suite |
+| `report [runId]` | Generate reports |
+| `leaderboard` | Local SQLite leaderboard |
+| `compare <a> <b>` | Compare two agents locally |
+| `create-test` | Interactive benchmark wizard |
+| `login` | Link CLI to the cloud dashboard |
+| `logout` | Revoke local cloud credentials |
+| `whoami` | Show the linked cloud user |
+
+## Useful flags
+
+```bash
+agent-eval-bench run filesystem --no-docker -a mock
+agent-eval-bench run --concurrency 2
+agent-eval-bench run --sync
+```
+
+`--sync` forces uploading the run when credentials exist (sync also happens automatically after login).

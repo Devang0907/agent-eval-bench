@@ -30,6 +30,8 @@ agent-eval-bench benchmark
 agent-eval-bench report
 agent-eval-bench leaderboard
 agent-eval-bench compare mock claude
+agent-eval-bench login
+agent-eval-bench whoami
 ```
 
 ## Configuration
@@ -69,17 +71,49 @@ Context, Memory, Planning, Loop, Recovery, Git, Shell, Filesystem, Verification,
 
 ## Monorepo packages
 
-| Package | Role |
-|---------|------|
-| `@agent-eval-bench/core` | Contracts, Zod schemas, Registry, EventBus, DI |
-| `@agent-eval-bench/sandbox` | Docker + Local sandboxes |
-| `@agent-eval-bench/adapters` | Agent adapters |
-| `@agent-eval-bench/runner` | Orchestrator |
-| `@agent-eval-bench/scoring` | Validators + WeightedScorer |
-| `@agent-eval-bench/telemetry` | Event sinks + SQLite leaderboard |
-| `@agent-eval-bench/reporter` | MD / HTML / JSON / terminal |
-| `@agent-eval-bench/benchmarks` | Official YAML suites |
-| `agent-eval-bench` | Published CLI |
+| Package | Role | Published with npm CLI? |
+|---------|------|-------------------------|
+| `@agent-eval-bench/core` | Contracts, Zod schemas, Registry, EventBus, DI | Yes (bundled) |
+| `@agent-eval-bench/sandbox` | Docker + Local sandboxes | Yes (bundled) |
+| `@agent-eval-bench/adapters` | Agent adapters | Yes (bundled) |
+| `@agent-eval-bench/runner` | Orchestrator | Yes (bundled) |
+| `@agent-eval-bench/scoring` | Validators + WeightedScorer | Yes (bundled) |
+| `@agent-eval-bench/telemetry` | Event sinks + SQLite leaderboard | Yes (bundled) |
+| `@agent-eval-bench/reporter` | MD / HTML / JSON / terminal | Yes (bundled) |
+| `@agent-eval-bench/benchmarks` | Official YAML suites | Yes (bundled) |
+| `agent-eval-bench` | Published CLI | Yes |
+| `@agent-eval-bench/api` | Bun + Prisma cloud API (`apps/api`) | **No** |
+| `@agent-eval-bench/web` | Next.js site + dashboard (`apps/web`) | **No** |
+
+Installing `agent-eval-bench` from npm only pulls the CLI and eval runtime. The website and API stay in this monorepo for local/platform development.
+
+## Cloud platform (website + API)
+
+```bash
+# Postgres
+docker compose up -d
+
+# API (Bun + Prisma)
+cp apps/api/.env.example apps/api/.env
+bun run db:push
+bun run dev:api
+
+# Web (Next.js — http://localhost:3000)
+cp apps/web/.env.example apps/web/.env.local
+bun run dev:web
+```
+
+Then in another terminal:
+
+```bash
+set AGENT_EVAL_BENCH_API_URL=http://localhost:4000
+agent-eval-bench login
+agent-eval-bench run --no-docker -a mock
+```
+
+Sign up on the website (email/password or Google), approve the device code at `/device`, and open the dashboard for synced runs, telemetry logs, and leaderboards.
+
+Optional Google OAuth: set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `apps/api/.env`.
 
 ## Plugins
 
@@ -96,6 +130,10 @@ export default {
 ```
 
 ## Docs
+
+Website docs (when running the platform): [http://localhost:3000/docs](http://localhost:3000/docs)
+
+Repo markdown:
 
 - [Architecture](docs/architecture.md)
 - [API](docs/api.md)

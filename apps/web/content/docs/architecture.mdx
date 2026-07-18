@@ -1,0 +1,27 @@
+---
+title: Architecture
+description: How the CLI, runner, sandboxes, and cloud API fit together.
+order: 7
+---
+
+```
+CLI (Commander + Ink)
+  → Registry / Config / Plugins
+  → BenchmarkRunner
+       → SandboxProvider (Docker | Local)
+       → AgentAdapter
+       → EventBus → Telemetry sinks (JSONL, SQLite)
+       → Validators → WeightedScorer
+       → Reporters
+       → Cloud sync (optional API token)
+```
+
+## Monorepo layout
+
+| Path | Published? | Role |
+|------|------------|------|
+| `packages/*` | CLI bundle | Eval runtime |
+| `apps/api` | No | Bun + Prisma cloud API |
+| `apps/web` | No | Next.js site + dashboard |
+
+When users install `agent-eval-bench` from npm they only receive the CLI and eval dependencies — never the website apps.

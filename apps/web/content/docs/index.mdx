@@ -1,0 +1,53 @@
+---
+title: Getting started
+description: Install the CLI and run your first agent evaluation suite.
+order: 1
+---
+
+Agent Eval Bench evaluates autonomous AI coding agents inside Docker or local sandboxes, scores them across nine dimensions, and can sync results to the cloud dashboard.
+
+## Install
+
+```bash
+bun install -g agent-eval-bench
+```
+
+From this monorepo:
+
+```bash
+bun install
+bun run --filter agent-eval-bench build
+```
+
+## Quick start
+
+```bash
+agent-eval-bench init
+agent-eval-bench doctor
+agent-eval-bench list
+agent-eval-bench run
+```
+
+## Configuration
+
+Create `agent-eval-bench.config.ts`:
+
+```ts
+import { defineConfig } from "agent-eval-bench";
+
+export default defineConfig({
+  agents: [
+    { name: "mock", type: "mock" },
+    { name: "claude", type: "claude-code" },
+  ],
+  noDocker: true,
+  reports: ["terminal", "json", "markdown", "html"],
+});
+```
+
+## Next steps
+
+- [CLI reference](/docs/cli)
+- [Adapters](/docs/adapters)
+- [Writing benchmarks](/docs/benchmarks)
+- [Cloud sync](/docs/cloud)

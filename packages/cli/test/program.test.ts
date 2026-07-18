@@ -16,6 +16,9 @@ describe("CLI program", () => {
       "report",
       "leaderboard",
       "create-test",
+      "login",
+      "logout",
+      "whoami",
     ]) {
       expect(names).toContain(cmd);
     }

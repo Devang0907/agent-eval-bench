@@ -1,0 +1,37 @@
+---
+title: Benchmarks
+description: Author YAML suites with validators and fixtures.
+order: 4
+---
+
+Benchmarks are YAML files validated by `BenchmarkDefinitionSchema`.
+
+```yaml
+id: filesystem/create-hello
+name: Create Hello File
+description: Basic file creation
+difficulty: easy
+category: filesystem
+prompt: |
+  Create a file called hello.txt with content hello
+repository:
+  files: {}
+expected:
+  files:
+    - path: hello.txt
+      exists: true
+      contains: hello
+validators:
+  - name: file-exists
+    params:
+      path: hello.txt
+timeout: 120000
+```
+
+## Categories
+
+Context, Memory, Planning, Loop, Recovery, Git, Shell, Filesystem, Verification, Hallucination, Ambiguity, Long-horizon, Tool-usage, Efficiency.
+
+## Score dimensions
+
+Success, accuracy, planning, efficiency, verification, recovery, memory, safety, and overall (0–100).
