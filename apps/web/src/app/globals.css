@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 
 @theme {
-  --font-sans: var(--font-jakarta), "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-syne), var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), "Cascadia Code", ui-monospace, monospace;
 
   --color-ink: #05070a;

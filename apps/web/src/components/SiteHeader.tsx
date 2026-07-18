@@ -28,7 +28,6 @@ function GitHubIcon({ className }: { className?: string }) {
 const links = [
   { href: "/#product", label: "Product" },
   { href: "/#how-it-works", label: "How it Works" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/#faq", label: "FAQ" },
   { href: "/docs", label: "Docs" },
 ];

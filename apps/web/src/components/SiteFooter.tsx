@@ -4,7 +4,6 @@ import { BrandMark } from "@/components/BrandMark";
 const productLinks = [
   { href: "/#product", label: "Features" },
   { href: "/#how-it-works", label: "How it Works" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Documentation" },
   { href: "/dashboard", label: "Dashboard" },
 ];
