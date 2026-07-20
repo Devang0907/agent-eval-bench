@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { easeOutExpo } from "@/lib/motion";
 import { useSession } from "@/lib/auth-client";
+import { GITHUB_URL, NPM_URL } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -120,16 +121,12 @@ export function SiteHeader() {
                 </DropdownMenuItem>
               ))}
               <DropdownMenuItem asChild>
-                <a href="https://github.com" target="_blank" rel="noreferrer">
+                <a href={GITHUB_URL} target="_blank" rel="noreferrer">
                   GitHub
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a
-                  href="https://www.npmjs.com/package/agent-eval-bench"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={NPM_URL} target="_blank" rel="noreferrer">
                   npm
                 </a>
               </DropdownMenuItem>
@@ -142,7 +139,7 @@ export function SiteHeader() {
           </DropdownMenu>
 
           <a
-            href="https://github.com"
+            href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
             className="focus-ring hidden items-center gap-1.5 rounded-full px-2 py-1 text-sm text-fog hover:text-snow sm:inline-flex"
@@ -151,7 +148,7 @@ export function SiteHeader() {
             GitHub
           </a>
           <a
-            href="https://www.npmjs.com/package/agent-eval-bench"
+            href={NPM_URL}
             target="_blank"
             rel="noreferrer"
             className="focus-ring hidden items-center gap-1.5 rounded-full px-2 py-1 text-sm text-fog hover:text-snow sm:inline-flex"

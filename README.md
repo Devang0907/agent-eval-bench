@@ -1,6 +1,28 @@
-# Agent Eval Bench
+<div align="center">
+  <img src="assets/logo.svg" alt="Agent Eval Bench" width="96" height="96" />
 
-**Playwright + Lighthouse + Vitest for AI coding agents.**
+  <h1>Agent Eval Bench</h1>
+
+  <p><strong>Playwright + Lighthouse + Vitest for AI coding agents.</strong></p>
+
+  <p>by <a href="https://github.com/Devang0907">@Devang0907</a></p>
+
+  <p>
+    <a href="https://github.com/Devang0907/agent-eval-bench/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Devang0907/agent-eval-bench/ci.yml?branch=main&label=test" alt="CI status" /></a>
+    <a href="https://github.com/Devang0907/agent-eval-bench/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Devang0907/agent-eval-bench" alt="License" /></a>
+    <a href="https://www.npmjs.com/package/agent-eval-bench"><img src="https://img.shields.io/npm/v/agent-eval-bench" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/agent-eval-bench"><img src="https://img.shields.io/npm/dw/agent-eval-bench" alt="npm downloads" /></a>
+    <a href="https://github.com/Devang0907/agent-eval-bench/stargazers"><img src="https://img.shields.io/github/stars/Devang0907/agent-eval-bench?style=social" alt="GitHub stars" /></a>
+  </p>
+
+  <p>
+    <a href="https://github.com/Devang0907/agent-eval-bench">GitHub</a> •
+    <a href="https://www.npmjs.com/package/agent-eval-bench">npm</a> •
+    <a href="https://agent-eval-bench.vercel.app/">Website</a>
+  </p>
+</div>
+
+---
 
 Agent Eval Bench is a production-grade evaluation framework for autonomous AI coding agents. It measures planning, context handling, memory, tool use, git/shell workflows, recovery, verification, hallucination resistance, efficiency, and more — inside isolated Docker (or local) sandboxes.
 
@@ -89,6 +111,10 @@ Installing `agent-eval-bench` from npm only pulls the CLI and eval runtime. The 
 
 ## Cloud platform (website + API)
 
+Live site: [https://agent-eval-bench.vercel.app/](https://agent-eval-bench.vercel.app/)
+
+For local development:
+
 ```bash
 # Postgres
 docker compose up -d
@@ -111,7 +137,7 @@ agent-eval-bench login
 agent-eval-bench run --no-docker -a mock
 ```
 
-Sign up on the website (email/password or Google), approve the device code at `/device`, and open the dashboard for synced runs, telemetry logs, and leaderboards.
+Sign up on the [website](https://agent-eval-bench.vercel.app/) (email/password or Google), approve the device code at `/device`, and open the dashboard for synced runs, telemetry logs, and leaderboards.
 
 Optional Google OAuth: set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `apps/api/.env`.
 
@@ -131,7 +157,9 @@ export default {
 
 ## Docs
 
-Website docs (when running the platform): [http://localhost:3000/docs](http://localhost:3000/docs)
+- Website: [https://agent-eval-bench.vercel.app/docs](https://agent-eval-bench.vercel.app/docs)
+- GitHub: [https://github.com/Devang0907/agent-eval-bench](https://github.com/Devang0907/agent-eval-bench)
+- npm: [https://www.npmjs.com/package/agent-eval-bench](https://www.npmjs.com/package/agent-eval-bench)
 
 Repo markdown:
 

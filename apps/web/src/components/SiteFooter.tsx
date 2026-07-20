@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandMark } from "@/components/BrandMark";
+import { GITHUB_URL, NPM_URL } from "@/lib/config";
 
 const productLinks = [
   { href: "/#product", label: "Features" },
@@ -15,10 +16,15 @@ const resourceLinks = [
   { href: "/docs/cli", label: "CLI Reference" },
 ];
 
+const externalLinks = [
+  { href: GITHUB_URL, label: "GitHub" },
+  { href: NPM_URL, label: "npm" },
+];
+
 export function SiteFooter() {
   return (
     <footer className="mt-8 border-t border-white/[0.06]">
-      <div className="container-wide grid gap-12 py-16 md:grid-cols-[1.6fr_1fr_1fr]">
+      <div className="container-wide grid gap-12 py-16 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div>
           <BrandMark />
           <p className="mt-4 max-w-sm text-sm leading-6 text-mute">
@@ -48,6 +54,24 @@ export function SiteFooter() {
                 <Link href={link.href} className="hover:text-snow">
                   {link.label}
                 </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-xs font-medium uppercase tracking-wider text-mute">Links</p>
+          <ul className="mt-4 space-y-2.5 text-sm text-fog">
+            {externalLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-snow"
+                >
+                  {link.label}
+                </a>
               </li>
             ))}
           </ul>

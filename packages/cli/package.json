@@ -56,6 +56,14 @@
     "evaluation",
     "cli"
   ],
+  "homepage": "https://agent-eval-bench.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devang0907/agent-eval-bench.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Devang0907/agent-eval-bench/issues"
+  },
   "license": "MIT",
   "engines": {
     "bun": ">=1.1.0"

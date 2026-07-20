@@ -2,6 +2,10 @@
 
 Thanks for helping build the evaluation standard for AI coding agents.
 
+- Website: [https://agent-eval-bench.vercel.app/](https://agent-eval-bench.vercel.app/)
+- GitHub: [https://github.com/Devang0907/agent-eval-bench](https://github.com/Devang0907/agent-eval-bench)
+- npm: [https://www.npmjs.com/package/agent-eval-bench](https://www.npmjs.com/package/agent-eval-bench)
+
 ## Development setup
 
 ```bash

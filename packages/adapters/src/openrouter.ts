@@ -11,7 +11,7 @@ export class OpenRouterAdapter extends OpenAIAdapter {
         apiKey: config.apiKey ?? process.env["OPENROUTER_API_KEY"],
         model: config.model ?? "anthropic/claude-sonnet-4",
         headers: {
-          "HTTP-Referer": "https://github.com/agent-eval-bench/agent-eval-bench",
+          "HTTP-Referer": "https://github.com/Devang0907/agent-eval-bench",
           "X-Title": "Agent Eval Bench",
           ...config.headers,
         },
